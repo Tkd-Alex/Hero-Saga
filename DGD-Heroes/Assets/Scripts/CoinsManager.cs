@@ -18,6 +18,6 @@ public class CoinsManager : MonoBehaviour {
 	// Update is called once per frame
 	public void ChangeScore (int value) {
 		coinsCollect += value;
-		coinsCollectText.text = coinsCollect.ToString ();
+		coinsCollectText.text = "Coins: " + coinsCollect.ToString ();
 	}
 }
