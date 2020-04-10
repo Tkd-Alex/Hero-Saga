@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
 			gameObject.GetComponent<Animator> ().Play ("Owlet_Monster_Run");
 			currentRigidBody.velocity = new Vector2 (-moveSpeed, currentRigidBody.velocity.y);
 		}
-		else if(isGrounded == false) gameObject.GetComponent<Animator> ().Play ("Owlet_Monster_Idle");
+		else if(isGrounded == true) gameObject.GetComponent<Animator> ().Play ("Owlet_Monster_Idle");
 
 		if((Input.GetKey("space") || Input.GetKey("w")) && isGrounded == true){
 			currentRigidBody.velocity = new Vector2 (currentRigidBody.velocity.x, jumpHeight);
