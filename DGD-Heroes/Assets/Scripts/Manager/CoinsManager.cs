@@ -10,7 +10,7 @@ public class CoinsManager : MonoBehaviour {
 	int coinsCollect;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		if (instance == null)
 			instance = this;
 	}
