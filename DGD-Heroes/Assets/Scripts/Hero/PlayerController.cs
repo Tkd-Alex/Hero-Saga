@@ -8,8 +8,11 @@ public class PlayerController : MonoBehaviour {
 
 	[SerializeField] float health = 100;
 
-	[SerializeField] GameObject pouchCheck;
-	
+	[SerializeField] Transform pouchCheck;
+	[SerializeField] LayerMask enemies;
+	[SerializeField] float attackrangeX;
+	[SerializeField] float attackrangeY;
+
 	public bool isAttacking = false;
 	public bool isHurted = false;
 	public bool isGrounded = false;
@@ -19,7 +22,6 @@ public class PlayerController : MonoBehaviour {
 
 	void Start () {
 		currentRigidBody = gameObject.GetComponent<Rigidbody2D>();
-		pouchCheck.SetActive(false);
 	}
 
 	void Update() {
@@ -31,10 +33,15 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	IEnumerator DoPunch() {
-		pouchCheck.SetActive(true);
+		Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(pouchCheck.position, new Vector2(attackrangeX, attackrangeY), 0, enemies);
+		for (int i = 0; i < enemiesToDamage.Length; i++) enemiesToDamage[i].gameObject.GetComponent<Enemy>().Hurt(25);
 		yield return new WaitForSeconds(1.0f);
-		isAttacking = false;
-		pouchCheck.SetActive(false);
+		isAttacking = false;	
+	}
+
+	void OnDrawGizmosSelected() {
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireCube(pouchCheck.position, new Vector3(attackrangeX, attackrangeY, 1));
 	}
 
 	IEnumerator DelayHurt() {
@@ -46,12 +53,12 @@ public class PlayerController : MonoBehaviour {
 		
 		if ((Input.GetKey ("d") || Input.GetKey ("right")) && !isHurted) {
 			// gameObject.GetComponent<SpriteRenderer> ().flipX = false;
-			if(gameObject.transform.localScale.x < 0) gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * - 1, gameObject.transform.localScale.y, gameObject.transform.localScale.y);
+			if(gameObject.transform.localScale.x < 0) gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * - 1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 			if (!isAttacking) gameObject.GetComponent<Animator> ().Play ("Owlet_Monster_Run");
 			currentRigidBody.velocity = new Vector2 (moveSpeed, currentRigidBody.velocity.y);
 		} else if ((Input.GetKey ("a") || Input.GetKey ("left")) && !isHurted) {
 			// gameObject.GetComponent<SpriteRenderer> ().flipX = true;
-			if (gameObject.transform.localScale.x > 0)  gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * - 1, gameObject.transform.localScale.y, gameObject.transform.localScale.y);
+			if (gameObject.transform.localScale.x > 0)  gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * - 1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 			if (!isAttacking) gameObject.GetComponent<Animator> ().Play ("Owlet_Monster_Run");
 			currentRigidBody.velocity = new Vector2 (-moveSpeed, currentRigidBody.velocity.y);
 		} else {

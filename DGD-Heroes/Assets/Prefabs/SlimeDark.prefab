@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 70664841882372434}
   - component: {fileID: 50689260638280590}
   - component: {fileID: 114402615283414608}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SlimeDark
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -107,7 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b49b65e1f4cda224bb22e6337f9e3dac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  player: {fileID: 0}
+  health: 500
   damage: 5
 --- !u!212 &212424461760149228
 SpriteRenderer:

@@ -12,19 +12,19 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void LateUpdate() {
+		// 'Watch' the player, flip enemy.
 		if( 
 			(player.transform.position.x > gameObject.transform.position.x && gameObject.transform.localScale.x > 0) || 
 			(player.transform.position.x < gameObject.transform.position.x && gameObject.transform.localScale.x < 0) 
 		)
-			gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * -1, gameObject.transform.localScale.y, gameObject.transform.localScale.y);
+			gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * -1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 	}
 
-	void OnTriggerEnter2D(Collider2D other) {
-		if (other.gameObject.name == "PouchCheck") {
-			health -= 25;
-			gameObject.GetComponent<Animator>().Play("SlimeDarkDamage");
-			Debug.Log("Current health " + health);
-			if (health <= 0) this.gameObject.SetActive(false);
-		}
+	public void Hurt(int damage) {
+		health -= damage;
+		gameObject.GetComponent<Animator>().Play("SlimeDarkDamage");
+		Debug.Log("Current health " + health);
+		if (health <= 0) this.gameObject.SetActive(false);
 	}
+
 }
