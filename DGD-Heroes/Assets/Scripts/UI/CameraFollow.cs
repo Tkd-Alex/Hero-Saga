@@ -8,11 +8,6 @@ public class CameraFollow : MonoBehaviour {
 	[SerializeField] float timeOffset;
 	[SerializeField] Vector2 posOffset;
 
-	[SerializeField] float lefTimit;
-	[SerializeField] float rightLimit;
-	[SerializeField] float bottomLimit;
-	[SerializeField] float topLimit;
-
 	// Use this for initialization
 	void Start () {
 		
@@ -27,10 +22,10 @@ public class CameraFollow : MonoBehaviour {
 		endPos.z = -10;
 
 		transform.position = Vector3.Lerp (startPos, endPos, timeOffset * Time.deltaTime);
-	
+
 		transform.position = new Vector3 (
-			Mathf.Clamp(transform.position.x, lefTimit, rightLimit),
-			Mathf.Clamp(transform.position.y, bottomLimit, topLimit),
+			Mathf.Clamp(transform.position.x, CameraBoundsManager.instance.getLefTimit(), CameraBoundsManager.instance.getRightLimit()),
+			Mathf.Clamp(transform.position.y, CameraBoundsManager.instance.getBottomLimit(), CameraBoundsManager.instance.getTopLimit()),
 			transform.position.z
 		);
 	}

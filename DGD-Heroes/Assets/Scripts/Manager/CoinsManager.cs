@@ -9,15 +9,18 @@ public class CoinsManager : MonoBehaviour {
 	[SerializeField] Text coinsCollectText;
 	int coinsCollect;
 
-	// Use this for initialization
 	void Awake () {
 		if (instance == null)
 			instance = this;
 	}
 	
-	// Update is called once per frame
-	public void ChangeScore (int value) {
+	public void ChangeCoins (int value) {
 		coinsCollect += value;
 		coinsCollectText.text = "Coins: " + coinsCollect.ToString ();
+	}
+
+	public void IncreaseCoins() {
+		coinsCollect += 1;
+		coinsCollectText.text = "Coins: " + coinsCollect.ToString();
 	}
 }
