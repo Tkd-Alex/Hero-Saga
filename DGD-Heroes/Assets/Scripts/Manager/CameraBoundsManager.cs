@@ -6,13 +6,13 @@ public class CameraBoundsManager : MonoBehaviour {
 
 	public static CameraBoundsManager instance;
 
-	[SerializeField] float lefTimit = 3.6f;
+	[SerializeField] float lefTimit;
 	[SerializeField] float rightLimit;
 	[SerializeField] float bottomLimit;
 	[SerializeField] float topLimit;
 
 	// Use this for initialization
-	void Awake() {
+	void Start() {
 		if (instance == null)
 			instance = this;
 	}
