@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 	[SerializeField] float moveSpeed = 2f;
 	[SerializeField] float jumpHeight = 6f;
 
 	[SerializeField] float health = 100;
+	[SerializeField] Text healthText;
 
-	[SerializeField] Transform pouchCheck;
+	[SerializeField] Transform attackPoint;
 	[SerializeField] LayerMask enemies;
 	[SerializeField] float attackrangeX;
 	[SerializeField] float attackrangeY;
@@ -16,7 +18,11 @@ public class PlayerController : MonoBehaviour {
 	public bool isAttacking = false;
 	public bool isHurted = false;
 	public bool isGrounded = false;
-	
+
+	[SerializeField] GameObject rock;
+	public bool attackPowerUP = false;
+	public bool defensePowerUP = false;
+
 	private bool canDoubleJump;
 	Rigidbody2D currentRigidBody;
 
@@ -28,20 +34,21 @@ public class PlayerController : MonoBehaviour {
 		if(Input.GetButtonDown("Fire1") && !isAttacking && !isHurted && isGrounded) {
 			isAttacking = true;
 			gameObject.GetComponent<Animator>().Play("Owlet_Monster_DoublePunch");
+			if(attackPowerUP) Instantiate(rock, attackPoint.position, attackPoint.rotation);
 			StartCoroutine("DoPunch");
 		}
 	}
 
 	IEnumerator DoPunch() {
-		Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(pouchCheck.position, new Vector2(attackrangeX, attackrangeY), 0, enemies);
-		for (int i = 0; i < enemiesToDamage.Length; i++) enemiesToDamage[i].gameObject.GetComponent<Enemy>().Hurt(25);
+		Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(attackrangeX, attackrangeY), 0, enemies);
+		for (int i = 0; i < enemiesToDamage.Length; i++) enemiesToDamage[i].gameObject.GetComponent<Enemy>().Hurt(15);
 		yield return new WaitForSeconds(1.0f);
 		isAttacking = false;	
 	}
 
 	void OnDrawGizmosSelected() {
 		Gizmos.color = Color.red;
-		Gizmos.DrawWireCube(pouchCheck.position, new Vector3(attackrangeX, attackrangeY, 1));
+		Gizmos.DrawWireCube(attackPoint.position, new Vector3(attackrangeX, attackrangeY, 1));
 	}
 
 	IEnumerator DelayHurt() {
@@ -105,6 +112,7 @@ public class PlayerController : MonoBehaviour {
 				health -= collision.collider.GetComponent<Enemy>().damage;  // Reduce the healt
 				Debug.Log("Current health " + health);
 				if(health <= 0) gameObject.GetComponent<Animator>().Play("Owlet_Monster_Death");
+				healthText.text = "Health: " + (health <= 0 ? "0" : health.ToString());
 			}
 		}
 	}
