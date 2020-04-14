@@ -7,6 +7,7 @@ public class Coins : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.CompareTag("Player")) {
 			CoinsManager.instance.IncreaseCoins();
+			SoundManager.instance.Play("CoinsCollect");
 			this.gameObject.SetActive(false);
 		}
 	}

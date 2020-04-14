@@ -30,6 +30,7 @@ public class Enemy : MonoBehaviour {
 
 	public void Hurt(int damage) {
 		health -= damage;
+		SoundManager.instance.Play("HitEnemy");
 		gameObject.GetComponent<Animator>().Play("SlimeDarkDamage");
 		Debug.Log("Current health " + health);
 		if (health <= 0) this.gameObject.SetActive(false);

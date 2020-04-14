@@ -58,7 +58,10 @@ public class PlayerController : MonoBehaviour {
 		Gizmos.DrawWireCube(attackPoint.position, new Vector3(attackrangeX, attackrangeY, 1));
 	}
 
-	IEnumerator DelayHurt() {
+	IEnumerator PlayerHurtHandler() {
+		// Play the hurt anymation
+		gameObject.GetComponent<Animator>().Play("Owlet_Monster_Hurt");
+		SoundManager.instance.Play("PlayerHurt");
 		yield return new WaitForSeconds(0.3f);
 		if (health <= 0) {
 			gameObject.GetComponent<Animator>().Play("Owlet_Monster_Death");
@@ -92,6 +95,7 @@ public class PlayerController : MonoBehaviour {
 				if (Input.GetKeyDown("space") || Input.GetKeyDown("w") || Input.GetKeyDown("up")){
 					if (canDoubleJump == true) {
 						canDoubleJump = false;
+						SoundManager.instance.Play("PlayerJump");
 						currentRigidBody.velocity = new Vector2 (currentRigidBody.velocity.x, jumpHeight);
 					}
 				}
@@ -116,9 +120,7 @@ public class PlayerController : MonoBehaviour {
 		// Push away the player (Left,Right check)
 		if (gameObject.transform.localScale.x > 0) currentRigidBody.velocity = new Vector2(-moveSpeed * 2, currentRigidBody.velocity.y);
 		else currentRigidBody.velocity = new Vector2(moveSpeed * 2, currentRigidBody.velocity.y);
-		// Play the hurt anymation
-		gameObject.GetComponent<Animator>().Play("Owlet_Monster_Hurt");
-		StartCoroutine("DelayHurt");  // Call coorutine for 'sleep'
+		StartCoroutine("PlayerHurtHandler");  // Call coorutine for 'sleep'
 		health -= defensePowerUP ? (int)(damage/2) : damage;  // Reduce the healt
 		Debug.Log("Current health " + health);
 		healthText.text = "Health: " + (health <= 0 ? "0" : health.ToString());
