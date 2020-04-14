@@ -16,7 +16,7 @@ public class SpecialAttack : MonoBehaviour {
 		if(hitInfo.collider != null) {
 			DestroyThisAttack();
 			if (hitInfo.collider.CompareTag("Enemy")) hitInfo.collider.gameObject.GetComponent<Enemy>().Hurt(25);
-		} else transform.Translate(Vector2.up * speed * Time.deltaTime);
+		}else transform.Translate(Vector2.up * speed * Time.deltaTime);
 	}
 
 	void DestroyThisAttack() {
