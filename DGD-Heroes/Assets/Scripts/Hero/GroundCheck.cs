@@ -12,13 +12,12 @@ public class GroundCheck : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D collision){
 		if (collision.collider.tag == "Ground") {
 			Player.GetComponent<PlayerController> ().isGrounded = true;
+			Player.GetComponent<PlayerController>().canMove = true;
 		}
 	}
 
 	void OnCollisionExit2D(Collision2D collision){
-		if (collision.collider.tag == "Ground") {
-			Player.GetComponent<PlayerController> ().isGrounded = false;
-		}
+		if (collision.collider.tag == "Ground") Player.GetComponent<PlayerController> ().isGrounded = false;
 	}
 
 }

@@ -17,10 +17,15 @@ public class SpecialAttack : MonoBehaviour {
 			DestroyThisAttack();
 			if (hitInfo.collider.CompareTag("Enemy")) hitInfo.collider.gameObject.GetComponent<Enemy>().Hurt(25);
 		}else transform.Translate(Vector2.up * speed * Time.deltaTime);
+		Debug.Log(transform.rotation);
 	}
 
 	void DestroyThisAttack() {
-		Debug.Log("Distruggi");
 		this.gameObject.SetActive(false);
 	}
+
+	public void Spawn(Vector2 futurePosition, Quaternion rotation) {
+		transform.Spawn(futurePosition, rotation);
+	}
+
 }

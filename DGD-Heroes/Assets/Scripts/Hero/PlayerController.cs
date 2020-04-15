@@ -19,10 +19,10 @@ public class PlayerController : MonoBehaviour {
 	private Direction direction = Direction.right;
 
 	public bool isGrounded = false;
+	public bool canMove = true;  // Use like mutex lock/unlock other animations/actions
 	private bool isAttacking = false;
-	private bool canMove = true;  // Use like mutex lock/unlock other animations/actions
-
-	[SerializeField] GameObject specialAttackPrefab;  // Prefab
+	
+	[SerializeField] GameObject specialAttack;  // Prefab
 	public bool attackPowerUP = false;
 	public bool defensePowerUP = false;
 
@@ -31,8 +31,8 @@ public class PlayerController : MonoBehaviour {
 
 	void Start () {
 		currentRigidBody = gameObject.GetComponent<Rigidbody2D>();
-		specialAttackPrefab = Instantiate(specialAttackPrefab, attackPoint.position, attackPoint.rotation, transform);
-		specialAttackPrefab.SetActive(false);
+		specialAttack = Instantiate(specialAttack, attackPoint.position, attackPoint.rotation);  //, transform);
+		specialAttack.SetActive(false);
 	}
 
 	void Update() {
@@ -42,8 +42,9 @@ public class PlayerController : MonoBehaviour {
 			if(attackPowerUP) {
 				Vector3 spawnPositionAttack = attackPoint.position;
 				spawnPositionAttack.x = gameObject.transform.localScale.x < 0 ? spawnPositionAttack.x - 0.8f : spawnPositionAttack.x + 0.8f;  // offset for graphic fireball
-				specialAttackPrefab.transform.SetPositionAndRotation(spawnPositionAttack, attackPoint.rotation);
-				specialAttackPrefab.SetActive(true);
+				specialAttack.GetComponent<SpecialAttack>().Spawn(new Vector2(spawnPositionAttack.x, spawnPositionAttack.y), attackPoint.rotation);
+				// specialAttackPrefab.transform.SetPositionAndRotation(spawnPositionAttack, attackPoint.rotation);
+				// specialAttackPrefab.SetActive(true);
 			}
 			StartCoroutine("AttackHandler");
 		}
@@ -68,7 +69,7 @@ public class PlayerController : MonoBehaviour {
 		} else if ((Input.GetKey ("a") || Input.GetKey ("left")) && canMove) {
 			// gameObject.GetComponent<SpriteRenderer> ().flipX = true;
 			if(direction != Direction.left) {
-				gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * - 1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);;
+				gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * - 1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 				direction = Direction.left;
 			}
 			if (!isAttacking) gameObject.GetComponent<Animator> ().Play ("Owlet_Monster_Run");
@@ -105,9 +106,9 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-	void Hurt(float damage) {
+	private void Hurt(float damage, Transform enemyTransform) {
 		// Push away the player (Left,Right check)
-		if (gameObject.transform.localScale.x > 0) currentRigidBody.velocity = new Vector2(-moveSpeed * 2, currentRigidBody.velocity.y);
+		if (enemyTransform.localScale.x > 0) currentRigidBody.velocity = new Vector2(-moveSpeed * 2, currentRigidBody.velocity.y);
 		else currentRigidBody.velocity = new Vector2(moveSpeed * 2, currentRigidBody.velocity.y);
 		StartCoroutine("HurtHandler");  // Call coorutine for 'sleep'
 		health -= defensePowerUP ? (int)(damage/2) : damage;  // Reduce the healt
@@ -145,16 +146,16 @@ public class PlayerController : MonoBehaviour {
 		canMove = true;
 	}
 
-	void OnCollisionEnter2D(Collision2D collision) {
-		if (collision.collider.tag == "Enemy") {
-			if (!isAttacking) Hurt(collision.collider.GetComponent<Enemy>().damage);
-		}
-	}
-
 	public void PowerUP(string powerup) {
 		if (powerup == "defense") defensePowerUP = true;
 		else if (powerup == "attack") attackPowerUP = true;
 
 		StartCoroutine("PowerUPHandler");
+	}
+
+	void OnCollisionEnter2D(Collision2D collision) {
+		if (collision.collider.tag == "Enemy") {
+			if (!isAttacking) Hurt(collision.collider.GetComponent<Enemy>().damage, collision.collider.transform);
+		}
 	}
 }

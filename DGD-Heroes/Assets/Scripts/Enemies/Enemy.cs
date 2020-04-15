@@ -48,7 +48,6 @@ public class Enemy : MonoBehaviour {
 		resizeHealthBar();
 		SoundManager.instance.Play("HitEnemy");
 		gameObject.GetComponent<Animator>().Play("Damage");
-		Debug.Log("Current health " + health);
 		if (health <= 0) this.gameObject.SetActive(false);
 	}
 

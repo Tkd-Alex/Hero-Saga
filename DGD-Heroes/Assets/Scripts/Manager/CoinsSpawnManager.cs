@@ -83,8 +83,7 @@ public class CoinsSpawnManager : MonoBehaviour {
 				if (lastSpawnIndex >= maxCoinsOnScreen) lastSpawnIndex = 0;
 				if (coinsList[lastSpawnIndex] != null && coinsList[lastSpawnIndex].activeInHierarchy == false) {
 					// Debug.Log("Position and setActive at: " + lastSpawnIndex);
-					coinsList[lastSpawnIndex].transform.SetPositionAndRotation(futurePosition, Quaternion.identity);
-					coinsList[lastSpawnIndex].SetActive(true);
+					coinsList[lastSpawnIndex].GetComponent<Coins>().Spawn(futurePosition, Quaternion.identity);
 				}
 				lastSpawnIndex += 1;
 			}

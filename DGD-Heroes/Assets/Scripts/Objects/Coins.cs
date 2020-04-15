@@ -16,4 +16,8 @@ public class Coins : MonoBehaviour {
 		this.gameObject.SetActive(false);
 	}
 
+	public void Spawn(Vector2 futurePosition, Quaternion rotation) {
+		transform.Spawn(futurePosition, rotation);
+	}
+
 }
