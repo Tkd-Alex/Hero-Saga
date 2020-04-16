@@ -160,9 +160,9 @@ public class PlayerController : MonoBehaviour {
 		isInAnimation = false;
 	}
 
-	public void PowerUP(string powerup) {
-		if (powerup == "defense") defensePowerUP = true;
-		else if (powerup == "attack") attackPowerUP = true;
+	public void PowerUP(PowerUP.PowerUPType type) {
+		if (type == global::PowerUP.PowerUPType.defense) defensePowerUP = true;
+		else if (type == global::PowerUP.PowerUPType.attack) attackPowerUP = true;
 
 		StartCoroutine("PowerUPHandler");
 	}

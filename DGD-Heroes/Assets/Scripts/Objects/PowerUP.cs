@@ -4,21 +4,14 @@ using UnityEngine;
 
 public class PowerUP : MonoBehaviour {
 
-	[SerializeField] string powerupName;
+	public enum PowerUPType { attack, defense }
+	public PowerUPType type;
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.CompareTag("Player")) {
-			other.gameObject.GetComponent<PlayerController>().PowerUP(powerupName);
+			other.gameObject.GetComponent<PlayerController>().PowerUP(type);
 			transform.parent.gameObject.SetActive(false);
 		}
-	}
-
-	void OnBecameInvisibile() {
-		this.gameObject.SetActive(false);
-	}
-
-	void OnBecameVisibile() {
-		this.gameObject.SetActive(true);
 	}
 
 }
