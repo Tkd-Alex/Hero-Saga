@@ -19,7 +19,8 @@ public class PlayerController : MonoBehaviour {
 	private Direction direction = Direction.right;
 
 	public bool isGrounded = false;
-	public bool canMove = true;  // Use like mutex lock/unlock other animations/actions
+	public bool isInAnimation = false;  // Use like mutex lock/unlock other animations/actions
+	public bool canMove = true;
 	private bool isAttacking = false;
 	
 	[SerializeField] GameObject specialAttack;  // Prefab
@@ -36,16 +37,25 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update() {
-		if(Input.GetButtonDown("Fire1") && !isAttacking && canMove && isGrounded) {
+		bool canShoot = false;
+		if (attackPowerUP) {
+			Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - attackPoint.position;
+			float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+			if (
+				(direction == Direction.right && rotZ >= -15 && rotZ <= 115) ||
+				(direction == Direction.left && ( (rotZ >= 80 && rotZ <= 180) || rotZ <= -150))
+			) {
+				attackPoint.rotation = Quaternion.Euler(0f, 0f, rotZ - 90);
+				canShoot = true;
+			} // else Debug.Log(rotZ);
+			
+		}
+
+		if (Input.GetButtonDown("Fire1") && !isAttacking && canMove && isGrounded) {
 			isAttacking = true;
 			gameObject.GetComponent<Animator>().Play("Owlet_Monster_DoublePunch");
-			if(attackPowerUP) {
-				Vector3 spawnPositionAttack = attackPoint.position;
-				spawnPositionAttack.x = gameObject.transform.localScale.x < 0 ? spawnPositionAttack.x - 0.8f : spawnPositionAttack.x + 0.8f;  // offset for graphic fireball
-				specialAttack.GetComponent<SpecialAttack>().Spawn(new Vector2(spawnPositionAttack.x, spawnPositionAttack.y), attackPoint.rotation);
-				// specialAttackPrefab.transform.SetPositionAndRotation(spawnPositionAttack, attackPoint.rotation);
-				// specialAttackPrefab.SetActive(true);
-			}
+			if (attackPowerUP && canShoot)	
+				specialAttack.transform.GetChild(0).GetComponent<SpecialAttack>().Spawn(attackPoint.position, attackPoint.rotation);
 			StartCoroutine("AttackHandler");
 		}
 	}
@@ -57,17 +67,14 @@ public class PlayerController : MonoBehaviour {
 
 	void FixedUpdate(){
 		
-		if ((Input.GetKey ("d") || Input.GetKey ("right")) && canMove) {
-			// gameObject.GetComponent<SpriteRenderer> ().flipX = false;
-
+		if ((Input.GetKey ("d") || Input.GetKey ("right")) && canMove && !isInAnimation) {
 			if(direction != Direction.right) {
 				gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * - 1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 				direction = Direction.right;
 			}
 			if (!isAttacking) gameObject.GetComponent<Animator> ().Play ("Owlet_Monster_Run");
 			currentRigidBody.velocity = new Vector2 (moveSpeed, currentRigidBody.velocity.y);
-		} else if ((Input.GetKey ("a") || Input.GetKey ("left")) && canMove) {
-			// gameObject.GetComponent<SpriteRenderer> ().flipX = true;
+		} else if ((Input.GetKey ("a") || Input.GetKey ("left")) && canMove && !isInAnimation) {
 			if(direction != Direction.left) {
 				gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * - 1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 				direction = Direction.left;
@@ -75,12 +82,12 @@ public class PlayerController : MonoBehaviour {
 			if (!isAttacking) gameObject.GetComponent<Animator> ().Play ("Owlet_Monster_Run");
 			currentRigidBody.velocity = new Vector2 (-moveSpeed, currentRigidBody.velocity.y);
 		}else {
-			if (!isAttacking && canMove) gameObject.GetComponent<Animator> ().Play ("Owlet_Monster_Idle");
+			if (!isAttacking && canMove && !isInAnimation) gameObject.GetComponent<Animator> ().Play ("Owlet_Monster_Idle");
 		}
 
 		if (isGrounded == true) canDoubleJump = true;
 
-		if((Input.GetKey("space") || Input.GetKey("w") || Input.GetKey("up")) && canMove){
+		if((Input.GetKey("space") || Input.GetKey("w") || Input.GetKey("up")) && canMove && !isInAnimation){
 			if (isGrounded) currentRigidBody.velocity = new Vector2 (currentRigidBody.velocity.x, jumpHeight);
 			else { 
 				if (Input.GetKeyDown("space") || Input.GetKeyDown("w") || Input.GetKeyDown("up")){
@@ -116,9 +123,8 @@ public class PlayerController : MonoBehaviour {
 		healthText.text = "Health: " + (health <= 0 ? "0" : health.ToString());
 	}
 
-
 	IEnumerator HurtHandler() {
-		canMove = false;
+		isInAnimation = true;
 		// Play the hurt anymation
 		gameObject.GetComponent<Animator>().Play("Owlet_Monster_Hurt");
 		SoundManager.instance.Play("PlayerHurt");
@@ -128,7 +134,7 @@ public class PlayerController : MonoBehaviour {
 			yield return new WaitForSeconds(0.5f);
 			this.gameObject.SetActive(false);
 		}
-		canMove = true;
+		isInAnimation = false;
 	}
 
 	IEnumerator AttackHandler() {
@@ -139,11 +145,11 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	IEnumerator PowerUPHandler() {
-		canMove = false;
+		isInAnimation = true;
 		gameObject.GetComponent<Animator>().Play("Owlet_Monster_JumpPowerUP");
 		SoundManager.instance.Play("PlayerPowerUP");
 		yield return new WaitForSeconds(1.0f);
-		canMove = true;
+		isInAnimation = false;
 	}
 
 	public void PowerUP(string powerup) {
