@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 95944026177515880}
   - component: {fileID: 70664841882372434}
   - component: {fileID: 50689260638280590}
-  - component: {fileID: 114402615283414608}
+  - component: {fileID: 114315394823000454}
   m_Layer: 8
   m_Name: SlimeDark
   m_TagString: Enemy
@@ -53,7 +53,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1610362067524270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.39, y: 1.657, z: 0}
+  m_LocalPosition: {x: -2.46, y: -0.462, z: 0}
   m_LocalScale: {x: 0.75328875, y: 0.75328875, z: 0.75328875}
   m_Children:
   - {fileID: 4282947181936712}
@@ -125,7 +125,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114402615283414608
+--- !u!114 &114315394823000454
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -133,11 +133,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1610362067524270}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b49b65e1f4cda224bb22e6337f9e3dac, type: 3}
+  m_Script: {fileID: 11500000, guid: 65a91eea07bc163429fb1bd538f1da49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  speed: 0.7
+  playerDistance: 4
+  speed: 0.6
   maxHealth: 100
   healthBar: {fileID: 1837557608661824, guid: 3968dc7f1bcbd3145b4254960e99fce0, type: 2}
   healthBarPoint: {fileID: 4282947181936712}

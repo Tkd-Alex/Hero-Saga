@@ -20,7 +20,7 @@ public class EdgeCheck : MonoBehaviour {
 	}
 
 	IEnumerator unlockMove() {
-		yield return new WaitForSeconds(0.4f);  // Prevent control disable
+		yield return new WaitForSeconds(0.3f);  // Prevent control disable
 		if(!Player.GetComponent<PlayerController>().isGrounded)
 			Player.GetComponent<PlayerController>().canMove = true;
 	}

@@ -584,7 +584,7 @@ GameObject:
   - component: {fileID: 168444187}
   - component: {fileID: 168444188}
   m_Layer: 0
-  m_Name: 4
+  m_Name: Green1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1000,7 +1000,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 114402615283414608, guid: 98a23ce6ca9d3944492f241f701874ef,
+    - target: {fileID: 114315394823000454, guid: 98a23ce6ca9d3944492f241f701874ef,
         type: 2}
       propertyPath: player
       value: 
@@ -14057,7 +14057,7 @@ GameObject:
   - component: {fileID: 731517130}
   - component: {fileID: 731517129}
   m_Layer: 0
-  m_Name: 4 (1)
+  m_Name: Green2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14897,7 +14897,7 @@ GameObject:
   - component: {fileID: 893665502}
   - component: {fileID: 893665503}
   m_Layer: 0
-  m_Name: 2
+  m_Name: Cloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16260,11 +16260,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4788804480772790, guid: fca4d6e2d5f23a442ae0fbfedff6bb29, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -4.521
+      value: -1.1285
       objectReference: {fileID: 0}
     - target: {fileID: 4788804480772790, guid: fca4d6e2d5f23a442ae0fbfedff6bb29, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.788
+      value: 1.8615
       objectReference: {fileID: 0}
     - target: {fileID: 4788804480772790, guid: fca4d6e2d5f23a442ae0fbfedff6bb29, type: 2}
       propertyPath: m_LocalPosition.z
@@ -16290,15 +16290,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
-    - target: {fileID: 114074110096015070, guid: fca4d6e2d5f23a442ae0fbfedff6bb29,
+    - target: {fileID: 114601807591598764, guid: fca4d6e2d5f23a442ae0fbfedff6bb29,
         type: 2}
       propertyPath: player
       value: 
       objectReference: {fileID: 1708545170}
-    - target: {fileID: 1335959275917314, guid: fca4d6e2d5f23a442ae0fbfedff6bb29, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fca4d6e2d5f23a442ae0fbfedff6bb29, type: 2}
   m_IsPrefabParent: 0
@@ -16728,7 +16724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   jumpHeight: 8
-  health: 100
+  health: 1000
   healthText: {fileID: 488668484}
   attackPoint: {fileID: 56870653}
   enemies:
@@ -17215,23 +17211,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 114542647006995106, guid: 6487e3c3c5941194bb3d1a55a222a55a,
+    - target: {fileID: 114102153287541720, guid: 6487e3c3c5941194bb3d1a55a222a55a,
         type: 2}
       propertyPath: player
       value: 
       objectReference: {fileID: 1708545170}
-    - target: {fileID: 4699977928072878, guid: 6487e3c3c5941194bb3d1a55a222a55a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.681
-      objectReference: {fileID: 0}
-    - target: {fileID: 4699977928072878, guid: 6487e3c3c5941194bb3d1a55a222a55a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -0.397
-      objectReference: {fileID: 0}
-    - target: {fileID: 1368465175921232, guid: 6487e3c3c5941194bb3d1a55a222a55a, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6487e3c3c5941194bb3d1a55a222a55a, type: 2}
   m_IsPrefabParent: 0
@@ -17404,7 +17388,7 @@ GameObject:
   - component: {fileID: 2052898253}
   - component: {fileID: 2052898254}
   m_Layer: 0
-  m_Name: 3
+  m_Name: Hill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17566,7 +17550,7 @@ GameObject:
   - component: {fileID: 2103388217}
   - component: {fileID: 2103388218}
   m_Layer: 0
-  m_Name: 1
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

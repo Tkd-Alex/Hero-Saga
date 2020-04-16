@@ -37,8 +37,8 @@ GameObject:
   - component: {fileID: 212631063540279534}
   - component: {fileID: 95943334995698354}
   - component: {fileID: 50209713429193140}
-  - component: {fileID: 114542647006995106}
   - component: {fileID: 70325015852398602}
+  - component: {fileID: 114102153287541720}
   m_Layer: 8
   m_Name: Goblin
   m_TagString: Enemy
@@ -67,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1332086891147282}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.34, y: 0.61, z: 0}
+  m_LocalPosition: {x: -0.397, y: 0.681, z: 0}
   m_LocalScale: {x: 0.8634731, y: 0.8634731, z: 0.8634731}
   m_Children: []
   m_Father: {fileID: 4172811153074470}
@@ -125,7 +125,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114542647006995106
+--- !u!114 &114102153287541720
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -133,15 +133,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1368465175921232}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b49b65e1f4cda224bb22e6337f9e3dac, type: 3}
+  m_Script: {fileID: 11500000, guid: 65a91eea07bc163429fb1bd538f1da49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  playerDistance: 4
   speed: 0.6
-  maxHealth: 150
+  maxHealth: 100
   healthBar: {fileID: 1837557608661824, guid: 3968dc7f1bcbd3145b4254960e99fce0, type: 2}
   healthBarPoint: {fileID: 4699977928072878}
-  damage: 8
+  damage: 5
 --- !u!212 &212631063540279534
 SpriteRenderer:
   m_ObjectHideFlags: 1

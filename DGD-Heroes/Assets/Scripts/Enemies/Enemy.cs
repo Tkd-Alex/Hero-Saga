@@ -5,38 +5,28 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
-	[SerializeField] GameObject player;
-	[SerializeField] float speed = 0.6f;
+	[SerializeField] protected GameObject player;
+	[SerializeField] protected float playerDistance = 4f;
+	[SerializeField] protected float speed = 0.6f;
 
 	[SerializeField] float maxHealth = 100f;
 	private float health;
 
 	[SerializeField] GameObject healthBar;
 	[SerializeField] Transform healthBarPoint;
-
 	public float damage = 5;
-	Rigidbody2D currentRigidBody;
-
+	
 	void Start () {
-		currentRigidBody = gameObject.GetComponent<Rigidbody2D>();
 		healthBar = Instantiate(healthBar, healthBarPoint.position, healthBarPoint.rotation, transform);
 		health = maxHealth;
-		resizeHealthBar();
+		ResizeHealthBar();
 	}
 
-	void LateUpdate() {
-		// 'Watch' the player, flip enemy. | Little movement
-		if ((Math.Abs(player.transform.position.x - gameObject.transform.position.x) >= 0.05) &&  Vector2.Distance(gameObject.transform.position, player.transform.position) <= 4) {
-			if (
-				(player.transform.position.x > gameObject.transform.position.x && gameObject.transform.localScale.x > 0) ||
-				(player.transform.position.x < gameObject.transform.position.x && gameObject.transform.localScale.x < 0)
-			) gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * -1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
-			
-			currentRigidBody.velocity = new Vector2(gameObject.transform.localScale.x < 0 ? speed : -speed, currentRigidBody.velocity.y);
-		}
+	protected void Move() {
+		transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
 	}
 
-	private void resizeHealthBar() {
+	private void ResizeHealthBar() {
 		Vector3 localScale = healthBar.gameObject.transform.localScale;
 		localScale.x = (float)((1.5 * health) / maxHealth);
 		healthBar.gameObject.transform.localScale = localScale;
@@ -45,7 +35,7 @@ public class Enemy : MonoBehaviour {
 
 	public void Hurt(int damage) {
 		health -= damage;
-		resizeHealthBar();
+		ResizeHealthBar();
 		SoundManager.instance.Play("HitEnemy");
 		gameObject.GetComponent<Animator>().Play("Damage");
 		if (health <= 0) this.gameObject.SetActive(false);

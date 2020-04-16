@@ -115,8 +115,16 @@ public class PlayerController : MonoBehaviour {
 
 	private void Hurt(float damage, Transform enemyTransform) {
 		// Push away the player (Left,Right check)
-		if (enemyTransform.localScale.x > 0) currentRigidBody.velocity = new Vector2(-moveSpeed * 2, currentRigidBody.velocity.y);
-		else currentRigidBody.velocity = new Vector2(moveSpeed * 2, currentRigidBody.velocity.y);
+		Vector2 relativePoint = transform.InverseTransformPoint(enemyTransform.position);
+		float pushAway = Random.Range(moveSpeed * 2, moveSpeed * 3);
+		if (relativePoint.x < 0.0) { // Object is to the left
+			if (direction != Direction.right) pushAway *= -1;
+		} else if (relativePoint.x > 0.0) {  // Object is to the right
+			if (direction == Direction.right) pushAway *= -1;
+		}
+
+		currentRigidBody.velocity = new Vector2(pushAway, currentRigidBody.velocity.y);
+
 		StartCoroutine("HurtHandler");  // Call coorutine for 'sleep'
 		health -= defensePowerUP ? (int)(damage/2) : damage;  // Reduce the healt
 		Debug.Log("Current health " + health);
