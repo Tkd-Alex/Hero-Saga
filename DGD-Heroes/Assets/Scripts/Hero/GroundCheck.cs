@@ -11,6 +11,7 @@ public class GroundCheck : MonoBehaviour {
 	
 	void OnCollisionEnter2D(Collision2D collision){
 		if (collision.collider.tag == "Ground") {
+			this.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
 			Player.GetComponent<PlayerController> ().isGrounded = true;
 			Player.GetComponent<PlayerController>().canMove = true;
 		}
