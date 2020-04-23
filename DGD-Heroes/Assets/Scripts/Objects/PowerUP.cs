@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PowerUP : MonoBehaviour {
 
-	public enum PowerUPType { attack, defense }
+	public enum PowerUPType { attack, defense, coins }
 	public PowerUPType type;
 
 	void OnTriggerEnter2D(Collider2D other) {

@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] GameObject specialAttack;  // Prefab
 	public bool attackPowerUP = false;
 	public bool defensePowerUP = false;
+	public bool doubleCoinsPowerUP = false;
 
 	private bool canDoubleJump;
 	Rigidbody2D currentRigidBody;
@@ -141,6 +142,7 @@ public class PlayerController : MonoBehaviour {
 			gameObject.GetComponent<Animator>().Play("Owlet_Monster_Death");
 			yield return new WaitForSeconds(0.5f);
 			this.gameObject.SetActive(false);
+			SceneController.instance.LoadScene("GameOver");
 		}
 		isInAnimation = false;
 	}
@@ -163,6 +165,7 @@ public class PlayerController : MonoBehaviour {
 	public void PowerUP(PowerUP.PowerUPType type) {
 		if (type == global::PowerUP.PowerUPType.defense) defensePowerUP = true;
 		else if (type == global::PowerUP.PowerUPType.attack) attackPowerUP = true;
+		else if (type == global::PowerUP.PowerUPType.coins) doubleCoinsPowerUP = true;
 
 		StartCoroutine("PowerUPHandler");
 	}
