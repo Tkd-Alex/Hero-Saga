@@ -13,7 +13,6 @@ public class CoinsSpawnManager : MonoBehaviour {
 
 	int lastSpawnIndex = 0;
 
-	// Use this for initialization
 	void Start () {
 		coinsList = new GameObject[maxCoinsOnScreen];
 		for (int i = 0; i < maxCoinsOnScreen; i++) {
@@ -23,11 +22,6 @@ public class CoinsSpawnManager : MonoBehaviour {
 		StartCoroutine("SpawnCoins");
 		StartCoroutine("DeactivateDistanceCoins");
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	IEnumerator SpawnCoins() {
 		while (true) {
@@ -36,7 +30,7 @@ public class CoinsSpawnManager : MonoBehaviour {
 			bool nearAnotherCoin = false;
 			bool noSpawn = false;
 
-			yield return new WaitForSeconds(Random.Range(3, 5));
+			yield return new WaitForSeconds(Random.Range(2, 5));
 
 			int loops = 0;
 			while(true){
@@ -72,7 +66,7 @@ public class CoinsSpawnManager : MonoBehaviour {
 				// 30 Loops, too much attempts, no spawn for the moment (like in subground)
 				if (loops >= 10 && collider2Ds.Length == 0) break;
 				else if(loops >= 30) {
-					Debug.Log("I can't spawn here!");
+					// Debug.Log("I can't spawn here!");
 					noSpawn = true;
 					break;
 				}

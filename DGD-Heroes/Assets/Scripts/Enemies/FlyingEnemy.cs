@@ -8,11 +8,7 @@ public class FlyingEnemy : Enemy {
 	private bool isSleeping = true;
 
 	void LateUpdate() {
-		// 'Watch' the player, flip enemy. | Little movement
-		if (
-			(Math.Abs(player.transform.position.x - gameObject.transform.position.x) >= 0.05) && 
-			Vector2.Distance(gameObject.transform.position, player.transform.position) <= playerDistance
-		) {
+		if (transform.IsNearOther2D(player.transform, playerDistance) == true) {
 			Move();
 			WakeUpOrSleep();
 		}

@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public static class Extension {
 
@@ -8,4 +10,33 @@ public static class Extension {
 		trans.SetPositionAndRotation(futurePosition, rotation);
 		trans.gameObject.SetActive(true);
 	}
+
+	public static void Flip2D(this Transform trans, Transform otherTransform) {
+		if (
+			(otherTransform.position.x > trans.position.x && trans.localScale.x > 0) ||
+			(otherTransform.position.x < trans.position.x && trans.localScale.x < 0)
+		) trans.localScale = new Vector3(trans.localScale.x * -1, trans.localScale.y, trans.localScale.z);
+	}
+
+	public static bool IsNearOther2D(this Transform trans, Transform otherTransform, float distance) {
+		if (
+			(Math.Abs(otherTransform.position.x - trans.position.x) >= 0.05) &&
+			Vector2.Distance(trans.transform.position, trans.position) <= distance
+		)
+			return true;
+		return false;
+	}
+
+	public static T ChangeAlpha<T>(this T g, float newAlpha) where T : Graphic {
+		var color = g.color;
+		color.a = newAlpha;
+		g.color = color;
+		return g;
+	}
+
+	public static string Capitalize(this String s) {
+		if (string.IsNullOrEmpty(s)) return string.Empty;
+		return char.ToUpper(s[0]) + s.Substring(1);
+	}
+
 }
