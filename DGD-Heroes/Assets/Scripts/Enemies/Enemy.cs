@@ -38,7 +38,9 @@ public class Enemy : MonoBehaviour {
 		ResizeHealthBar();
 		SoundManager.instance.Play("HitEnemy");
 		gameObject.GetComponent<Animator>().Play("Damage");
-		if (health <= 0) this.gameObject.SetActive(false);
+		if (health <= 0) {
+			this.gameObject.SetActive(false);
+			PlayerStats.IncKills();
+		}
 	}
-
 }

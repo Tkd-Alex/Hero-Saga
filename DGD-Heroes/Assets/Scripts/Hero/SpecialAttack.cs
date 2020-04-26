@@ -27,7 +27,6 @@ public class SpecialAttack : MonoBehaviour {
 	}
 
 	void DisableExplosion() {
-		Debug.Log("Called");
 		explosion.SetActive(false);
 	}
 

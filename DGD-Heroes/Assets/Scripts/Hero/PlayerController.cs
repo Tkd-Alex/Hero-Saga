@@ -95,6 +95,7 @@ public class PlayerController : MonoBehaviour {
 					if (canDoubleJump == true) {
 						canDoubleJump = false;
 						SoundManager.instance.Play("PlayerJump");
+						// this.transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
 						currentRigidBody.velocity = new Vector2 (currentRigidBody.velocity.x, jumpHeight);
 					}
 				}
@@ -128,7 +129,7 @@ public class PlayerController : MonoBehaviour {
 
 		StartCoroutine("HurtHandler");  // Call coorutine for 'sleep'
 		health -= defensePowerUP ? (int)(damage/2) : damage;  // Reduce the healt
-		Debug.Log("Current health " + health);
+		PlayerStats.Health = health;
 		healthText.text = "Health: " + (health <= 0 ? "0" : health.ToString());
 	}
 

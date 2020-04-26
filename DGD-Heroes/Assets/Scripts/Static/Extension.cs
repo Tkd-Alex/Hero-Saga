@@ -21,14 +21,14 @@ public static class Extension {
 	public static bool IsNearOther2D(this Transform trans, Transform otherTransform, float distance) {
 		if (
 			(Math.Abs(otherTransform.position.x - trans.position.x) >= 0.05) &&
-			Vector2.Distance(trans.transform.position, trans.position) <= distance
+			Vector2.Distance(trans.position, otherTransform.position) <= distance
 		)
 			return true;
 		return false;
 	}
 
 	public static T ChangeAlpha<T>(this T g, float newAlpha) where T : Graphic {
-		var color = g.color;
+		Color color = g.color;
 		color.a = newAlpha;
 		g.color = color;
 		return g;
@@ -37,6 +37,11 @@ public static class Extension {
 	public static string Capitalize(this String s) {
 		if (string.IsNullOrEmpty(s)) return string.Empty;
 		return char.ToUpper(s[0]) + s.Substring(1);
+	}
+
+	public static void SetNameAndScore(this Transform trans, string name, int score) {
+		trans.Find("PlayerName").GetComponent<Text>().text = name;
+		trans.Find("PlayerScore").GetComponent<Text>().text = score.ToString();
 	}
 
 }

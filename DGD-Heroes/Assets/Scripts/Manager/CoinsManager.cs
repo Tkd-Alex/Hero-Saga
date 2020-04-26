@@ -20,6 +20,7 @@ public class CoinsManager : MonoBehaviour {
 	}
 
 	public void IncreaseCoins() {
+		PlayerStats.IncCoins();
 		coinsCollect += 1;
 		coinsCollectText.text = "Coins: " + coinsCollect.ToString();
 	}

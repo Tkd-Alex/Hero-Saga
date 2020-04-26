@@ -26,6 +26,7 @@ public class TimerCountdown : MonoBehaviour {
 		yield return new WaitForSeconds (1);
 		secondsLeft -= 1;
 
+		PlayerStats.Time = secondsLeft;
 		TimeSpan t = TimeSpan.FromSeconds( secondsLeft );
 		textSecondsLeft.text = "Left: " + t.Minutes.ToString ().PadLeft (2, '0') + ":" + t.Seconds.ToString ().PadLeft (2, '0');
 		takingAway = false;
