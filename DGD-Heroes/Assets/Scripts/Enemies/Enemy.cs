@@ -40,7 +40,9 @@ public class Enemy : MonoBehaviour {
 		gameObject.GetComponent<Animator>().Play("Damage");
 		if (health <= 0) {
 			this.gameObject.SetActive(false);
+			Debug.Log(PlayerStats.Kills);
 			PlayerStats.IncKills();
+			Debug.Log(PlayerStats.Kills);
 		}
 	}
 }

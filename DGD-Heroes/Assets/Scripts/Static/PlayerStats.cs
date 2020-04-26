@@ -12,7 +12,7 @@
         get { return coins; }
         set { coins = value; }
     }
-    public static void IncCoins(int value=1) { kills += value; }
+    public static void IncCoins(int value=1) { coins += value; }
 
     public static float Time {
         get { return time; }
@@ -24,7 +24,7 @@
         set { health = value; }
     }
 
-    public static int Points {
-        get { return (int)(((coins * 5) + (kills * 2.5)) * (time + 1)); }
+    public static int CalculatePoints() {
+        return (int)(((coins * 5) + (kills * 2.5)) * (time + 1));
     }
 }

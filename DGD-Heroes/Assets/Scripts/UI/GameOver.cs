@@ -6,9 +6,27 @@ using UnityEngine.UI;
 public class GameOver : MonoBehaviour {
 
 	[SerializeField] Text finalScoreText;
+	[SerializeField] GameObject inputField;
+
 	void Start () {
-		finalScoreText.text = PlayerStats.Points.ToString();
-		ScoreManager.CreateEntry("Bingo-Bongo", PlayerStats.Points);
+		finalScoreText.text = PlayerStats.CalculatePoints().ToString();
+
+		Debug.Log("Kills: " + PlayerStats.Kills.ToString());
+		Debug.Log("Coins: " + PlayerStats.Coins.ToString());
+		Debug.Log("Time: " + PlayerStats.Time.ToString());
+		Debug.Log("Health: " + PlayerStats.Health.ToString());
+	}
+
+	public void SaveScore() {
+		string name = inputField.GetComponent<Text>().text;
+		if (!string.IsNullOrEmpty(name)) {
+			ScoreManager.CreateEntry(name, PlayerStats.CalculatePoints());
+			BackToMenu();
+		}else UnityEditor.EditorUtility.DisplayDialog("Error", "Please insert a name. If you don't want to save the score press the menu button.", "Ok");
+	}
+
+	public void BackToMenu() {
+		SceneController.instance.LoadScene("Menu");
 	}
 
 }

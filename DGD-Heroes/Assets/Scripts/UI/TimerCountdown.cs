@@ -18,7 +18,10 @@ public class TimerCountdown : MonoBehaviour {
 	void Update () {
 		if (takingAway == false && secondsLeft > 0)
 			StartCoroutine(TimerTake());
-		if (secondsLeft <= 0) SceneController.instance.LoadScene("GameOver");
+		if (secondsLeft <= 0) {
+			StopAllCoroutines();
+			SceneController.instance.LoadScene("GameOver");
+		}
 	}
 
 	IEnumerator TimerTake(){
