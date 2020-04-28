@@ -23,4 +23,8 @@ public class MenuButtonHandler : MonoBehaviour {
 	public void Scoreboard() {
 		SceneController.instance.LoadScene("Scoreboard");
 	}
+
+	public void ChangeKeys() {
+		SceneController.instance.LoadScene("ChangeKeys");
+	}
 }

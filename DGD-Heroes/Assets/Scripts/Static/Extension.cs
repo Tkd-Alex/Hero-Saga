@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,6 +35,12 @@ public static class Extension {
 	public static string Capitalize(this String s) {
 		if (string.IsNullOrEmpty(s)) return string.Empty;
 		return char.ToUpper(s[0]) + s.Substring(1);
+	}
+
+	public static string RepeatForLoop(this string s, int n) {
+		var result = s;
+		for (var i = 0; i < n - 1; i++) result += s;
+		return result;
 	}
 
 	public static void SetNameAndScore(this Transform trans, string name, int score) {

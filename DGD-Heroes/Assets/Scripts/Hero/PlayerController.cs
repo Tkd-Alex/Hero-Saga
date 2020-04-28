@@ -67,15 +67,15 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		
-		if ((Input.GetKey ("d") || Input.GetKey ("right")) && canMove && !isInAnimation) {
-			if(direction != Direction.right) {
+
+		if (Input.GetKey(GameInputManager.instance.right) && canMove && !isInAnimation) {
+			if (direction != Direction.right) {
 				gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * - 1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 				direction = Direction.right;
 			}
 			if (!isAttacking) gameObject.GetComponent<Animator> ().Play ("Owlet_Monster_Run");
 			currentRigidBody.velocity = new Vector2 (moveSpeed, currentRigidBody.velocity.y);
-		} else if ((Input.GetKey ("a") || Input.GetKey ("left")) && canMove && !isInAnimation) {
+		} else if (Input.GetKey(GameInputManager.instance.left) && canMove && !isInAnimation) {
 			if(direction != Direction.left) {
 				gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * - 1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 				direction = Direction.left;
@@ -88,10 +88,10 @@ public class PlayerController : MonoBehaviour {
 
 		if (isGrounded == true) canDoubleJump = true;
 
-		if((Input.GetKey("space") || Input.GetKey("w") || Input.GetKey("up")) && canMove && !isInAnimation){
+		if(Input.GetKey(GameInputManager.instance.jump) && canMove && !isInAnimation){
 			if (isGrounded) currentRigidBody.velocity = new Vector2 (currentRigidBody.velocity.x, jumpHeight);
 			else { 
-				if (Input.GetKeyDown("space") || Input.GetKeyDown("w") || Input.GetKeyDown("up")){
+				if (Input.GetKeyDown(GameInputManager.instance.jump)) {
 					if (canDoubleJump == true) {
 						canDoubleJump = false;
 						SoundManager.instance.Play("PlayerJump");
