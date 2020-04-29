@@ -14,16 +14,17 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] LayerMask enemies;
 	[SerializeField] float attackrangeX;
 	[SerializeField] float attackrangeY;
+	[SerializeField] float damage = 15;
 
 	private enum Direction {left, right}
-	private Direction direction = Direction.right;
+	private Direction direction = Direction.right;	// Just for readable code
 
 	public bool isGrounded = false;
-	public bool isInAnimation = false;  // Use like mutex lock/unlock other animations/actions
+	public bool isInAnimation = false;  			// Use like mutex lock/unlock other animations/actions
 	public bool canMove = true;
 	private bool isAttacking = false;
-	
-	[SerializeField] GameObject specialAttack;  // Prefab
+
+	[SerializeField] GameObject specialAttack;  	// Prefab
 	public bool attackPowerUP = false;
 	public bool defensePowerUP = false;
 	public bool doubleCoinsPowerUP = false;
@@ -37,6 +38,15 @@ public class PlayerController : MonoBehaviour {
 		specialAttack.SetActive(false);
 	}
 
+	/*
+	 * If the user have PowerUp attack goin to calculate the direction of SpecialAttack base on mouse position.
+	 * First of all calculate the delta by mainCamera and mousePosition
+	 * Check if position of the mouse is 'front' of the player and the rotation is not pointing the groud.
+	 * If all it's ok set canShoot to true.
+	 * rotZ - 90 because we have the special attack pivot rotate (for follow up Translate)
+	 * If we can't use the special attack just do a 'normal' punch :)
+	 * Obviously the player !currently attacking, can attack on air, and should be in move codition.
+	 */
 	void Update() {
 		bool canShoot = false;
 		if (attackPowerUP) {
@@ -48,24 +58,41 @@ public class PlayerController : MonoBehaviour {
 			) {
 				attackPoint.rotation = Quaternion.Euler(0f, 0f, rotZ - 90);
 				canShoot = true;
-			} // else Debug.Log(rotZ);
-			
+			}
 		}
 
 		if (Input.GetButtonDown("Fire1") && !isAttacking && canMove && isGrounded) {
 			isAttacking = true;
 			gameObject.GetComponent<Animator>().Play("Owlet_Monster_DoublePunch");
-			if (attackPowerUP && canShoot)	
+			if (attackPowerUP && canShoot)
 				specialAttack.transform.GetChild(0).GetComponent<SpecialAttack>().Spawn(attackPoint.position, attackPoint.rotation);
 			StartCoroutine("AttackHandler");
 		}
 	}
 
+	// Just for see the range of 'normal' punch attack.
 	void OnDrawGizmosSelected() {
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireCube(attackPoint.position, new Vector3(attackrangeX, attackrangeY, 1));
 	}
 
+	/*
+	 * https://docs.unity3d.com/ScriptReference/MonoBehaviour.FixedUpdate.html
+	 * Frame-rate independent MonoBehaviour.FixedUpdate message for physics calculations.
+     *
+     * MonoBehaviour.FixedUpdate has the frequency of the physics system; it is called every fixed frame-rate frame.
+     * Compute Physics system calculations after FixedUpdate. 0.02 seconds (50 calls per second) is the default time between calls.
+	 *
+	 * Use FixedUpdate for manage the movement of the player: left, right, jump
+	 *
+	 * For left and right check if getKey (from GameInputManager instance) is True, the player can move and is not in animation state.
+	 * Then "Flip" the player if direction Enum not matching
+	 * Play the run animation
+	 * Change velocity for move the player
+	 *
+	 * For jump and double jump the logic is pretty the same of left, right movement. Just use a flag variable for double jump
+	 *
+	 */
 	void FixedUpdate(){
 
 		if (Input.GetKey(GameInputManager.instance.right) && canMove && !isInAnimation) {
@@ -90,52 +117,55 @@ public class PlayerController : MonoBehaviour {
 
 		if(Input.GetKey(GameInputManager.instance.jump) && canMove && !isInAnimation){
 			if (isGrounded) currentRigidBody.velocity = new Vector2 (currentRigidBody.velocity.x, jumpHeight);
-			else { 
+			else {
 				if (Input.GetKeyDown(GameInputManager.instance.jump)) {
 					if (canDoubleJump == true) {
 						canDoubleJump = false;
 						SoundManager.instance.Play("PlayerJump");
-						// this.transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().Play();
 						currentRigidBody.velocity = new Vector2 (currentRigidBody.velocity.x, jumpHeight);
 					}
 				}
-			}	
+			}
 			// gameObject.GetComponent<Animator> ().Play ("Owlet_Monster_Jump");
 		}
 
 		// Prevent out of screen movements ...
 		Vector3 minScreenBounds = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
 		Vector3 maxScreenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
- 
+
 		transform.position = new Vector3(
 			Mathf.Clamp(transform.position.x, minScreenBounds.x + 1, maxScreenBounds.x - 1),
-			transform.position.y, 
+			transform.position.y,
 			transform.position.z
-		);	
+		);
 
 	}
 
 	private void Hurt(float damage, Transform enemyTransform) {
-		// Push away the player (Left,Right check)
-		Vector2 relativePoint = transform.InverseTransformPoint(enemyTransform.position);
+		Vector2 relativePoint = transform.InverseTransformPoint(enemyTransform.position);	// Push away the player (Left,Right check)
 		float pushAway = Random.Range(moveSpeed * 2, moveSpeed * 3);
-		if (relativePoint.x < 0.0) { // Object is to the left
+		if (relativePoint.x < 0.0) { 														// Object is to the left
 			if (direction != Direction.right) pushAway *= -1;
-		} else if (relativePoint.x > 0.0) {  // Object is to the right
+		} else if (relativePoint.x > 0.0) {  												// Object is to the right
 			if (direction == Direction.right) pushAway *= -1;
 		}
 
 		currentRigidBody.velocity = new Vector2(pushAway, currentRigidBody.velocity.y);
 
-		StartCoroutine("HurtHandler");  // Call coorutine for 'sleep'
-		health -= defensePowerUP ? (int)(damage/2) : damage;  // Reduce the healt
+		StartCoroutine("HurtHandler");
+		health -= defensePowerUP ? (int)(damage/2) : damage;  	// Reduce the healt
 		PlayerStats.Health = health;
 		healthText.text = "Health: " + (health <= 0 ? "0" : health.ToString());
 	}
 
+	/*
+	 * The following Handler coorutine with WaitForSeconds are use especially for animation.
+	 * Create a state machine with flag variabile isInAnimation
+	 * Thats because if we don't use the isInAnimation the Play of (ex.) Owlet_Monster_Hurt can be replace from Run of Idle animation.
+	*/
+
 	IEnumerator HurtHandler() {
 		isInAnimation = true;
-		// Play the hurt anymation
 		gameObject.GetComponent<Animator>().Play("Owlet_Monster_Hurt");
 		SoundManager.instance.Play("PlayerHurt");
 		yield return new WaitForSeconds(0.3f);
@@ -150,7 +180,7 @@ public class PlayerController : MonoBehaviour {
 
 	IEnumerator AttackHandler() {
 		Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(attackrangeX, attackrangeY), 0, enemies);
-		for (int i = 0; i < enemiesToDamage.Length; i++) enemiesToDamage[i].gameObject.GetComponent<Enemy>().Hurt(15);
+		for (int i = 0; i < enemiesToDamage.Length; i++) enemiesToDamage[i].gameObject.GetComponent<Enemy>().Hurt(damage);
 		yield return new WaitForSeconds(1.0f);
 		isAttacking = false;
 	}
