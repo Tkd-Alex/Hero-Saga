@@ -42,14 +42,24 @@ public class Enemy : MonoBehaviour {
 		healthBar.gameObject.transform.localScale = localScale;
 	}
 
-	public void Hurt(int damage) {
+	public void Hurt(float damage) {
+		// The 'pushAway' code was copied from PlayerController
+		Vector2 relativePoint = transform.InverseTransformPoint(player.transform.position);
+		float pushAway = 2.5f;
+		if (relativePoint.x < 0.0) {
+			if (player.GetComponent<PlayerController>().direction != PlayerController.Direction.right) pushAway *= -1;
+		} else if (relativePoint.x > 0.0) {
+			if (player.GetComponent<PlayerController>().direction == PlayerController.Direction.right) pushAway *= -1;
+		}
+		gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(pushAway, gameObject.GetComponent<Rigidbody2D>().velocity.y);
+
 		health -= damage;
 		ResizeHealthBar();
 		SoundManager.instance.Play("HitEnemy");
 		gameObject.GetComponent<Animator>().Play("Damage");
 		if (health <= 0) {
 			this.gameObject.SetActive(false);
-			PlayerStats.IncKills();
+			PlayerStats.IncreaseKills();
 		}
 	}
 }

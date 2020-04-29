@@ -16,8 +16,11 @@ public class CameraBoundsManager : MonoBehaviour {
 	[SerializeField] float topLimit;
 
 	void Start() {
-		if (instance == null)
-			instance = this;
+		if (instance == null) instance = this;
+		else {
+			Destroy(gameObject);
+			return;
+		}
 	}
 
 	public float getLefTimit() { return lefTimit; }

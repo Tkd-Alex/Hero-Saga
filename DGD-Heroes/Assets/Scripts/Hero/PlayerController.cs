@@ -7,8 +7,9 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] float moveSpeed = 2f;
 	[SerializeField] float jumpHeight = 6f;
 
+	// This is also can be replaced by PlayStats, like PowerUPs
+	// Keep only for Serialize reason.
 	[SerializeField] float health = 100;
-	[SerializeField] Text healthText;
 
 	[SerializeField] Transform attackPoint;
 	[SerializeField] LayerMask enemies;
@@ -16,8 +17,8 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] float attackrangeY;
 	[SerializeField] float damage = 15;
 
-	private enum Direction {left, right}
-	private Direction direction = Direction.right;	// Just for readable code
+	public enum Direction {left, right}
+	public Direction direction = Direction.right;	// Just for readable code
 
 	public bool isGrounded = false;
 	public bool isInAnimation = false;  			// Use like mutex lock/unlock other animations/actions
@@ -25,9 +26,9 @@ public class PlayerController : MonoBehaviour {
 	private bool isAttacking = false;
 
 	[SerializeField] GameObject specialAttack;  	// Prefab
-	public bool attackPowerUP = false;
-	public bool defensePowerUP = false;
-	public bool doubleCoinsPowerUP = false;
+	// public bool attackPowerUP = false;
+	// public bool defensePowerUP = false;
+	// public bool doubleCoinsPowerUP = false;
 
 	private bool canDoubleJump;
 	Rigidbody2D currentRigidBody;
@@ -36,6 +37,12 @@ public class PlayerController : MonoBehaviour {
 		currentRigidBody = gameObject.GetComponent<Rigidbody2D>();
 		specialAttack = Instantiate(specialAttack, attackPoint.position, attackPoint.rotation);  //, transform);
 		specialAttack.SetActive(false);
+
+		// Recovery data from PlayerStat
+		if (PlayerStats.Health != 0) health = PlayerStats.Health;
+		// attackPowerUP = PlayerStats.AttackPowerUP;
+		// defensePowerUP = PlayerStats.DefensePowerUp;
+		// doubleCoinsPowerUP = PlayerStats.DoubleCoinsPowerUP;
 	}
 
 	/*
@@ -49,7 +56,7 @@ public class PlayerController : MonoBehaviour {
 	 */
 	void Update() {
 		bool canShoot = false;
-		if (attackPowerUP) {
+		if (PlayerStats.AttackPowerUP) {
 			Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - attackPoint.position;
 			float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 			if (
@@ -64,7 +71,7 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetButtonDown("Fire1") && !isAttacking && canMove && isGrounded) {
 			isAttacking = true;
 			gameObject.GetComponent<Animator>().Play("Owlet_Monster_DoublePunch");
-			if (attackPowerUP && canShoot)
+			if (PlayerStats.AttackPowerUP && canShoot)
 				specialAttack.transform.GetChild(0).GetComponent<SpecialAttack>().Spawn(attackPoint.position, attackPoint.rotation);
 			StartCoroutine("AttackHandler");
 		}
@@ -153,9 +160,9 @@ public class PlayerController : MonoBehaviour {
 		currentRigidBody.velocity = new Vector2(pushAway, currentRigidBody.velocity.y);
 
 		StartCoroutine("HurtHandler");
-		health -= defensePowerUP ? (int)(damage/2) : damage;  	// Reduce the healt
+		health -= PlayerStats.DefensePowerUp ? (int)(damage/2) : damage;  	// Reduce the healt
 		PlayerStats.Health = health;
-		healthText.text = "Health: " + (health <= 0 ? "0" : health.ToString());
+		GameSingletonUI.instance.healthText.text = "Health: " + (health <= 0 ? "0" : health.ToString());
 	}
 
 	/*
@@ -172,7 +179,11 @@ public class PlayerController : MonoBehaviour {
 		if (health <= 0) {
 			gameObject.GetComponent<Animator>().Play("Owlet_Monster_Death");
 			yield return new WaitForSeconds(0.5f);
-			this.gameObject.SetActive(false);
+
+			Destroy(gameObject);
+			Destroy(TimerCountdown.instance.gameObject);
+			Destroy(GameSingletonUI.instance.gameObject);
+
 			SceneController.instance.LoadScene("GameOver");
 		}
 		isInAnimation = false;
@@ -194,14 +205,21 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void PowerUP(PowerUP.PowerUPType type) {
-		if (type == global::PowerUP.PowerUPType.defense) defensePowerUP = true;
-		else if (type == global::PowerUP.PowerUPType.attack) attackPowerUP = true;
-		else if (type == global::PowerUP.PowerUPType.coins) doubleCoinsPowerUP = true;
+		if (type == global::PowerUP.PowerUPType.defense) PlayerStats.DefensePowerUp = true;
+		else if (type == global::PowerUP.PowerUPType.attack) PlayerStats.AttackPowerUP = true;
+		else if (type == global::PowerUP.PowerUPType.coins) PlayerStats.DoubleCoinsPowerUP = true;
 
+		GameSingletonUI.instance.PowerUPs.Find(type.ToString().Capitalize()).GetComponent<Image>().ChangeAlpha(1f);
 		StartCoroutine("PowerUPHandler");
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {
+		if (collision.collider.tag == "Enemy") {
+			if (!isAttacking) Hurt(collision.collider.GetComponent<Enemy>().damage, collision.collider.transform);
+		}
+	}
+
+	void OnCollisionStay2D(Collision2D collision) {
 		if (collision.collider.tag == "Enemy") {
 			if (!isAttacking) Hurt(collision.collider.GetComponent<Enemy>().damage, collision.collider.transform);
 		}

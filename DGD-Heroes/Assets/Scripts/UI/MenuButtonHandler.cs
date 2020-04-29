@@ -9,6 +9,7 @@ public class MenuButtonHandler : MonoBehaviour {
 	}
 
 	public void Play() {
+		PlayerStats.ResetAll();
 		SceneController.instance.LoadScene("Level1");
 	}
 

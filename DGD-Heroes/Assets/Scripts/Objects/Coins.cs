@@ -6,8 +6,11 @@ public class Coins : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.CompareTag("Player")) {
-			CoinsManager.instance.IncreaseCoins();
-			if(other.gameObject.GetComponent<PlayerController>().doubleCoinsPowerUP) CoinsManager.instance.IncreaseCoins();
+			// Singleton instance call was replaced by PlayerStats static class.
+			// CoinsManager.instance.IncreaseCoins();
+			// if(other.gameObject.GetComponent<PlayerController>().doubleCoinsPowerUP) CoinsManager.instance.IncreaseCoins();
+			PlayerStats.IncreaseCoins();
+			GameSingletonUI.instance.coinsCollectText.text = "Coins: " + PlayerStats.Coins.ToString();
 			SoundManager.instance.Play("CoinsCollect");
 			this.gameObject.SetActive(false);
 		}

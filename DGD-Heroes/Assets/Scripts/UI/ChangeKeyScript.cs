@@ -39,7 +39,7 @@ public class ChangeKeyScript : MonoBehaviour {
 
 	IEnumerator WaitForKey() {
 		while (!keyEvent.isKey) yield return null;
-		// yield return new WaitForSeconds(0.3);  // Just for debugging
+		yield return new WaitForSeconds(0.3f);
 	}
 
 	// A simple text animation, after start AssignKey the UI is waiting for a newInput, show animated-dot . .. ...
@@ -48,7 +48,8 @@ public class ChangeKeyScript : MonoBehaviour {
 		while (waitingForKey) {
 			for(int i=0; i<3; i++) {
 				textComponent.text = ".".RepeatForLoop(i + 1);
-				yield return new WaitForSeconds(0.3f);
+				if (!waitingForKey) break;
+				else yield return new WaitForSeconds(0.3f);
 			}
 		}
 	}
@@ -65,6 +66,7 @@ public class ChangeKeyScript : MonoBehaviour {
 		StartCoroutine(DotAnimation(keyName));
 
 		yield return WaitForKey();
+		waitingForKey = false;
 
 		string buttonString = "";
 		keyName = keyName.ToLower();
@@ -82,6 +84,7 @@ public class ChangeKeyScript : MonoBehaviour {
 			buttonString = GameInputManager.instance.left.ToString();
 		}
 
+		StopCoroutine("DotAnimation");
 		buttons.Find("Button-" + keyName.Capitalize()).Find("Key").GetComponent<Text>().text = buttonString;
 		PlayerPrefs.SetString(keyName + "Key", buttonString);
 		PlayerPrefs.Save();

@@ -6,12 +6,20 @@ using System;
 
 public class TimerCountdown : MonoBehaviour {
 
-	[SerializeField] Text textSecondsLeft;
 	[SerializeField] int secondsLeft;
 	bool mutex = false;
 
-	void Start () {
+	public static TimerCountdown instance;
+	void Awake () {
 		UpdateUITextFromSeconds();
+
+		// TimerCountdown converted to singleton because we need the same instance also in the Level2
+		if (instance == null) instance = this;
+		else {
+			Destroy(gameObject);
+			return;
+		}
+		DontDestroyOnLoad(gameObject);
 	}
 
 	void Update () {
@@ -19,6 +27,10 @@ public class TimerCountdown : MonoBehaviour {
 			StartCoroutine(TimerTake());
 		if (secondsLeft <= 0) {
 			StopAllCoroutines();  // Just for make sure that the cooruting is stopped (should be)
+			
+			Destroy(gameObject);
+			Destroy(GameSingletonUI.instance.gameObject);
+			
 			SceneController.instance.LoadScene("GameOver");
 		}
 	}
@@ -27,7 +39,7 @@ public class TimerCountdown : MonoBehaviour {
 		// Create a TimeSpan object from seconds float variable
 		TimeSpan t = TimeSpan.FromSeconds( secondsLeft );
 		// Update the UI text with M:S
-		textSecondsLeft.text = "Left: " + t.Minutes.ToString ().PadLeft (2, '0') + ":" + t.Seconds.ToString ().PadLeft (2, '0');
+		GameSingletonUI.instance.textSecondsLeft.text = "Left: " + t.Minutes.ToString ().PadLeft (2, '0') + ":" + t.Seconds.ToString ().PadLeft (2, '0');
 	}
 
 	/*
@@ -42,7 +54,7 @@ public class TimerCountdown : MonoBehaviour {
 		yield return new WaitForSeconds (1);
 		secondsLeft -= 1;
 
-		UpdateUITextFromSeconds()
+		UpdateUITextFromSeconds();
 		PlayerStats.Time = secondsLeft;
 
 		mutex = false;
