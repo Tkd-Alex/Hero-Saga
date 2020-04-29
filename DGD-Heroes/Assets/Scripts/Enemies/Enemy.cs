@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
+	/*
+	 * Each Enemy have:
+	 * Player GameObject used for 'follow' the player base on position
+	 * playerDistance float value used for enable the movement after distance reach
+	 * speed float * Time.deltaTime used for the movement
+	 * Multiple healt variable/components
+	 * If the enemy hit the player, remove "damage" value from health player
+	 */
+
 	[SerializeField] protected GameObject player;
 	[SerializeField] protected float playerDistance = 4f;
 	[SerializeField] protected float speed = 0.6f;
@@ -15,13 +24,14 @@ public class Enemy : MonoBehaviour {
 	[SerializeField] GameObject healthBar;
 	[SerializeField] Transform healthBarPoint;
 	public float damage = 5;
-	
+
 	void Start () {
 		healthBar = Instantiate(healthBar, healthBarPoint.position, healthBarPoint.rotation, transform);
 		health = maxHealth;
 		ResizeHealthBar();
 	}
 
+	// "Follow" the player, change position based on player position.
 	protected void Move() {
 		transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
 	}
@@ -32,7 +42,6 @@ public class Enemy : MonoBehaviour {
 		healthBar.gameObject.transform.localScale = localScale;
 	}
 
-
 	public void Hurt(int damage) {
 		health -= damage;
 		ResizeHealthBar();
@@ -40,9 +49,7 @@ public class Enemy : MonoBehaviour {
 		gameObject.GetComponent<Animator>().Play("Damage");
 		if (health <= 0) {
 			this.gameObject.SetActive(false);
-			Debug.Log(PlayerStats.Kills);
 			PlayerStats.IncKills();
-			Debug.Log(PlayerStats.Kills);
 		}
 	}
 }

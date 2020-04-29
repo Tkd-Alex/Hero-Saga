@@ -11,7 +11,6 @@ public class GroundEnemy : Enemy {
 		}
 	}
 
-
 	private void Flip() {
 		transform.Flip2D(player.transform);
 	}
