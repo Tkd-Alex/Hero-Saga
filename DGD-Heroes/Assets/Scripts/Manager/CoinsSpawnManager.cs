@@ -4,6 +4,22 @@ using UnityEngine;
 
 public class CoinsSpawnManager : MonoBehaviour {
 
+	/*
+	 * Small summary of CoinsSpawnManager class:
+	 * On start method Instantiate an array of GameObject with Coin prefab. (active: false)
+	 * Start coorutine for Spawn and Deactive coins.
+	 * IEnumerator SpawnCoins
+	 * Based on current position of the player try to spawn randomly coins.
+	 * Spawn time is random.
+	 * Spawn position is aldo random, but with some restriction.
+	 * * Coordinate of coin cannot be near other coins.
+	 * * Coordinate of coin must be near the player.
+	 * * Coordinate of coin cannot be overlap the ground.
+	 * * The coins can spawn in front of the player, but if randomly the coordinate are back of the player reduce the distance.
+	 * IEnumerator DeactivateDistanceCoins
+	 * Each three seconds deactive the coins far from the player.
+	 */
+
 	[SerializeField] GameObject player;
 	[SerializeField] Transform parent;
 	[SerializeField] private GameObject coin;
@@ -87,7 +103,7 @@ public class CoinsSpawnManager : MonoBehaviour {
 	// If the coins have too much distance between the player setActive false and free the i-slots for a new transform position.
 	IEnumerator DeactivateDistanceCoins(){
 		while (true){
-			yield return new WaitForSeconds(5);
+			yield return new WaitForSeconds(3);
 
 			for (int i = 0; i < maxCoinsOnScreen; i++)
 				if(coinsList[i] != null && Vector2.Distance(coinsList[i].transform.position, player.transform.position) >= 5)

@@ -13,10 +13,6 @@ public class Coins : MonoBehaviour {
 		}
 	}
 
-	void OnBecameInvisibile() {
-		this.gameObject.SetActive(false);
-	}
-
 	public void Spawn(Vector2 futurePosition, Quaternion rotation) {
 		transform.Spawn(futurePosition, rotation);
 	}

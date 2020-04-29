@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraBoundsManager : MonoBehaviour {
+	/*
+	 * Create a singleton just for store value reachable 'everywhere'
+	 * Used a singleton because i need to serialize the value.
+	 */
 
 	public static CameraBoundsManager instance;
 
@@ -11,7 +15,6 @@ public class CameraBoundsManager : MonoBehaviour {
 	[SerializeField] float bottomLimit;
 	[SerializeField] float topLimit;
 
-	// Use this for initialization
 	void Start() {
 		if (instance == null)
 			instance = this;

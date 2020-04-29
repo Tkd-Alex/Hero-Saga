@@ -13,7 +13,7 @@ public class CoinsManager : MonoBehaviour {
 		if (instance == null)
 			instance = this;
 	}
-	
+
 	public void ChangeCoins (int value) {
 		coinsCollect += value;
 		coinsCollectText.text = "Coins: " + coinsCollect.ToString ();
