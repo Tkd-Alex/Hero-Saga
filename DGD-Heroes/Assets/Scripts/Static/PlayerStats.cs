@@ -1,4 +1,12 @@
 ﻿public static class PlayerStats {
+    /*
+     * Nice static class
+     * Created just for store GameStats like
+     * Kills, Coins, time, Health
+     * Helpful for calculate final score
+     * The stats are reachable 'everywhere'
+     */
+
     private static int kills = 0, coins = 0;
     private static float time = 0f, health = 0;
 

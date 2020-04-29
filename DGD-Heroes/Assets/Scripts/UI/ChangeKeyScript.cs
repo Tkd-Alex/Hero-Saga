@@ -84,6 +84,7 @@ public class ChangeKeyScript : MonoBehaviour {
 
 		buttons.Find("Button-" + keyName.Capitalize()).Find("Key").GetComponent<Text>().text = buttonString;
 		PlayerPrefs.SetString(keyName + "Key", buttonString);
+		PlayerPrefs.Save();
 
 		yield return null;
 	}
