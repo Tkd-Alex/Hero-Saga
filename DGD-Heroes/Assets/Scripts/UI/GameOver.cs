@@ -11,12 +11,17 @@ public class GameOver : MonoBehaviour {
 	void Start () {
 		finalScoreText.text = PlayerStats.CalculatePoints().ToString();
 
-		Debug.Log("Kills: " + PlayerStats.Kills.ToString());
-		Debug.Log("Coins: " + PlayerStats.Coins.ToString());
-		Debug.Log("Time: " + PlayerStats.Time.ToString());
-		Debug.Log("Health: " + PlayerStats.Health.ToString());
+		// Debug.Log("Kills: " + PlayerStats.Kills.ToString());
+		// Debug.Log("Coins: " + PlayerStats.Coins.ToString());
+		// Debug.Log("Time: " + PlayerStats.Time.ToString());
+		// Debug.Log("Health: " + PlayerStats.Health.ToString());
 	}
 
+	/*
+	 * Easy, on SaveScore method get the text from UI
+	 * If the string is empty return Unity modal error.
+	 * Else, create a entry (with static class / save in PlayerPrefs) and return to Menu.
+	 */
 	public void SaveScore() {
 		string name = inputField.GetComponent<Text>().text;
 		if (!string.IsNullOrEmpty(name)) {

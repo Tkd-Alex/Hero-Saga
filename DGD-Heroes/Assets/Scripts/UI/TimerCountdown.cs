@@ -8,30 +8,43 @@ public class TimerCountdown : MonoBehaviour {
 
 	[SerializeField] Text textSecondsLeft;
 	[SerializeField] int secondsLeft;
-	bool takingAway = false;
+	bool mutex = false;
 
 	void Start () {
-		TimeSpan t = TimeSpan.FromSeconds( secondsLeft );
-		textSecondsLeft.text = "Left: " + t.Minutes.ToString ().PadLeft (2, '0') + ":" + t.Seconds.ToString ().PadLeft (2, '0');
+		UpdateUITextFromSeconds();
 	}
-	
+
 	void Update () {
-		if (takingAway == false && secondsLeft > 0)
+		if (mutex == false && secondsLeft > 0)
 			StartCoroutine(TimerTake());
 		if (secondsLeft <= 0) {
-			StopAllCoroutines();
+			StopAllCoroutines();  // Just for make sure that the cooruting is stopped (should be)
 			SceneController.instance.LoadScene("GameOver");
 		}
 	}
 
+	void UpdateUITextFromSeconds(){
+		// Create a TimeSpan object from seconds float variable
+		TimeSpan t = TimeSpan.FromSeconds( secondsLeft );
+		// Update the UI text with M:S
+		textSecondsLeft.text = "Left: " + t.Minutes.ToString ().PadLeft (2, '0') + ":" + t.Seconds.ToString ().PadLeft (2, '0');
+	}
+
+	/*
+	 * Wait for 1 seconds with coorutin
+	 * After that decrease secondsLeft
+	 * Call UpdateUITextFromSeconds
+	 * Save the value in PlayerStats
+	 * Set mutex = false for allow Start TimerTake again from update method
+	 */
 	IEnumerator TimerTake(){
-		takingAway = true;
+		mutex = true;
 		yield return new WaitForSeconds (1);
 		secondsLeft -= 1;
 
+		UpdateUITextFromSeconds()
 		PlayerStats.Time = secondsLeft;
-		TimeSpan t = TimeSpan.FromSeconds( secondsLeft );
-		textSecondsLeft.text = "Left: " + t.Minutes.ToString ().PadLeft (2, '0') + ":" + t.Seconds.ToString ().PadLeft (2, '0');
-		takingAway = false;
+
+		mutex = false;
 	}
 }

@@ -8,15 +8,9 @@ public class CameraFollow : MonoBehaviour {
 	[SerializeField] float timeOffset;
 	[SerializeField] Vector2 posOffset;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
 	void Update () {
-		Vector3 startPos = transform.position;  // Camera
-		Vector3 endPos = player.transform.position; // Player 
+		Vector3 startPos = transform.position; 		 	// Camera
+		Vector3 endPos = player.transform.position; 	// Player
 		endPos.x += posOffset.x;
 		endPos.y += posOffset.y;
 		endPos.z = -10;

@@ -10,10 +10,12 @@ public class HightScoreTable : MonoBehaviour {
 	[SerializeField] float topN = 5;
 
 	void Awake () {
+		// Get the data from static class / PlayerPrefs
+		// Then, save the list into List<> element. We need this because we can't serialize in PlayerPrefs directly the List<>
 		ScoreManager.HightScores hightscores = ScoreManager.GetHightScores();
 		List<ScoreManager.HightScoreEntry> hightscoreEntryList = hightscores.hightscoreEntryList;
 
-		// Bubble-Sort :D | https://www.tutorialspoint.com/Bubble-Sort-program-in-Chash
+		// Just a little sorting method ... Best player on top.
 		for (int j = 0; j <= hightscoreEntryList.Count - 2; j++) {
 			for (int i = 0; i <= hightscoreEntryList.Count - 2; i++) {
 				if (hightscoreEntryList[i].score < hightscoreEntryList[i + 1].score) {
@@ -24,7 +26,12 @@ public class HightScoreTable : MonoBehaviour {
 			}
 		}
 
-		for (int i=0; i < topN; i++) {
+		/*
+		 * Iterate element one by one.
+		 * Break the loop if we have more than topN element.
+		 * Instantiate the prefab, setNameAndScore (inside UI.Text element) and Spanw (setActive(true), setPosition)
+		 */
+		for (int i=0; i < hightscoreEntryList.Count ; i++) {
 			if (i >= topN) break;
 			GameObject entry = Instantiate(entryScorePrefab, startPosition);
 			entry.transform.SetNameAndScore(hightscoreEntryList[i].name, hightscoreEntryList[i].score);
