@@ -15,27 +15,28 @@
 |-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Splash screen | Implemented with Unity editor |
 | Game icon | Implemented with Unity editor |
-| Sound/Music | Main soundtrack in Menu, played with [SoundManager](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Manager/SoundManager.cs) |
-| Controls - KeyBinding | KeyBinding allowed by the main Menu [GameInputManager](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Manager/GameInputManager.cs), [ChangeKeyScript](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/UI/ChangeKeyScript.cs) |
+| Sound/Music | Main soundtrack in Menu, played with [SoundManager](/DGD-Heroes/Assets/Scripts/Manager/SoundManager.cs) |
+| Controls - KeyBinding | KeyBinding allowed by the main Menu [GameInputManager](/DGD-Heroes/Assets/Scripts/Manager/GameInputManager.cs), [ChangeKeyScript](/DGD-Heroes/Assets/Scripts/UI/ChangeKeyScript.cs) |
 | Credits Screen | Static page, reachable by the main Menu |
 | Scoreboard - Sort | The scoreboard is reachable by the main Menu or when the game is over. [HightScoreTable](Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/UI/HightScoreTable.cs), [ScoreManager](Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Static/ScoreManager.cs) |
-| Tutorial - Static scene | Static scene |
+| Tutorial | 3 Static scenes |
 | Score | The score is stored and calculated in static class [PlayerStats](Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Static/PlayerStats.cs) |
-| PowerUPs | There are tree PowerUPs: Attack, Defense, DoubleCoins. [PowerUP](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Objects/PowerUP.cs) |
-| Time-Base | [TimerCountdown.cs](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/UI/TimerCountdown.cs) |
-| Enemy / Challenge | Goblin, Slime, RedBat [Enemis](/Hero-Saga/tree/master/DGD-Heroes/Assets/Scripts/Enemies) |
+| PowerUPs | There are tree PowerUPs: Attack, Defense, DoubleCoins. [PowerUP](/DGD-Heroes/Assets/Scripts/Objects/PowerUP.cs) |
+| Time-Base | [TimerCountdown.cs](/DGD-Heroes/Assets/Scripts/UI/TimerCountdown.cs) |
+| Enemy | Goblin, Slime, RedBat [Enemies](/Hero-Saga/tree/master/DGD-Heroes/Assets/Scripts/Enemies) |
 | Multiple levels | There are two levels |
-| Basic AI | The enemy follow the player is near by [Enemy - Move](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Enemies/Enemy.cs), [IsNearOther2D](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Static/Extension.cs) |
-| PlayerPrefs | Store the custom controls and score [ScoreManager](/Tkd-Alex/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Static/ScoreManager.cs), [ChangeKeyScript](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/UI/ChangeKeyScript.cs) |
-| Singleton | [GameSingletonUI](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/UI/GameSingletonUI.cs), [TimerCountdown.cs](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/UI/TimerCountdown.cs), [SoundManager](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Manager/SoundManager.cs), [CameraBoundsManager](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Manager/CameraBoundsManager.cs), [SceneController](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Manager/SceneController.cs), [~~CoinsManager~~](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Manager/CoinsManager.cs) |
-| Coorutines | [unlockMove](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Hero/EdgeCheck.cs), [animationState - Player](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Hero/PlayerController.cs), [SpawnCoins, DeactivateDistanceCoins](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Manager/CoinsSpawnManager.cs), [WaitForKey, AssignKey, DotAnimation](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/UI/ChangeKeyScript.cs), [TimerTake](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/UI/TimerCountdown.cs) |
-| Enums | [Direction](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Hero/PlayerController.cs), [PowerUPs](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Objects/PowerUP.cs) |
-| Static class | [Extension](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Static/Extension.cs), [PlayerStats](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Static/PlayerStats.cs), [ScoreManager](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Static/ScoreManager.cs) |
-| Inheritance | [Enemy](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Enemies/Enemy.cs) > [FlyingEnemy](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Enemies/FlyingEnemy.cs) > [GroundEnemy](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Enemies/GroundEnemy.cs) |
-| Extension Methods | [Spawn, Flip2D, IsNearOther2D, ChangeAlpha, Capitalize, RepeatForLoop, SetNameAndScore](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Static/Extension.cs) |
+| Basic AI | The enemy follow the player is near by [Enemy - Move](/DGD-Heroes/Assets/Scripts/Enemies/Enemy.cs), [IsNearOther2D](/DGD-Heroes/Assets/Scripts/Static/Extension.cs) |
+| PlayerPrefs | Store the custom controls and score [ScoreManager](/Tkd-Alex/DGD-Heroes/Assets/Scripts/Static/ScoreManager.cs), [ChangeKeyScript](/DGD-Heroes/Assets/Scripts/UI/ChangeKeyScript.cs) |
+| Singleton | [GameSingletonUI](/DGD-Heroes/Assets/Scripts/UI/GameSingletonUI.cs), [TimerCountdown.cs](/DGD-Heroes/Assets/Scripts/UI/TimerCountdown.cs), [SoundManager](/DGD-Heroes/Assets/Scripts/Manager/SoundManager.cs), [CameraBoundsManager](/DGD-Heroes/Assets/Scripts/Manager/CameraBoundsManager.cs), [SceneController](/DGD-Heroes/Assets/Scripts/Manager/SceneController.cs), [~~CoinsManager~~](/DGD-Heroes/Assets/Scripts/Manager/CoinsManager.cs) |
+| Coorutines | [unlockMove](/DGD-Heroes/Assets/Scripts/Hero/EdgeCheck.cs), [animationState - Player](/DGD-Heroes/Assets/Scripts/Hero/PlayerController.cs), [SpawnCoins, DeactivateDistanceCoins](/DGD-Heroes/Assets/Scripts/Manager/CoinsSpawnManager.cs), [WaitForKey, AssignKey, DotAnimation](/DGD-Heroes/Assets/Scripts/UI/ChangeKeyScript.cs), [TimerTake](/DGD-Heroes/Assets/Scripts/UI/TimerCountdown.cs) |
+| Enums | [Direction](/DGD-Heroes/Assets/Scripts/Hero/PlayerController.cs), [PowerUPs](/DGD-Heroes/Assets/Scripts/Objects/PowerUP.cs) |
+| Static class | [Extension](/DGD-Heroes/Assets/Scripts/Static/Extension.cs), [PlayerStats](/DGD-Heroes/Assets/Scripts/Static/PlayerStats.cs), [ScoreManager](/DGD-Heroes/Assets/Scripts/Static/ScoreManager.cs) |
+| Inheritance | [Enemy](/DGD-Heroes/Assets/Scripts/Enemies/Enemy.cs) > [FlyingEnemy](/DGD-Heroes/Assets/Scripts/Enemies/FlyingEnemy.cs) > [GroundEnemy](/DGD-Heroes/Assets/Scripts/Enemies/GroundEnemy.cs) |
+| Extension Methods | [Spawn, Flip2D, IsNearOther2D, ChangeAlpha, Capitalize, RepeatForLoop, SetNameAndScore](/DGD-Heroes/Assets/Scripts/Static/Extension.cs) |
 | Animations | Hero: Idle, Jump, Hurt, Death. Coins, Enemy: Hurt, Idle |
-| Soundtrack | Main soundtrack played with singleton [SoundManager](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Manager/SoundManager.cs) |
-| Other sounds / FX | Coins collect, player hurt, enemy hurt, player jump [SoundManager](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Manager/SoundManager.cs) |
-| Raycast | Fireball collision, enemy detect [SpecialAttack](/Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Hero/SpecialAttack.cs)  |
+| Soundtrack | Main soundtrack played with singleton [SoundManager](/DGD-Heroes/Assets/Scripts/Manager/SoundManager.cs) |
+| Sounds / FX | Coins collect, player hurt, enemy hurt, player jump [SoundManager](/DGD-Heroes/Assets/Scripts/Manager/SoundManager.cs) |
+| Raycast | Fireball collision, enemy detect [SpecialAttack](/DGD-Heroes/Assets/Scripts/Hero/SpecialAttack.cs)  |
 | User interface | Hero, enemy (Goblin, Slime, RedBat), tiles, tree, powerUPs (Attack, Defense, DoubleCoins), parallax background, coins, custom ui |
 | Particles system | Glow powerUPs, fireball explosion, player jump dust, tree around light |
+
