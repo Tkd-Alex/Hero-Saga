@@ -18,14 +18,14 @@
 | Sound/Music | Main soundtrack in Menu, played with [SoundManager](/DGD-Heroes/Assets/Scripts/Manager/SoundManager.cs) |
 | Controls - KeyBinding | KeyBinding allowed by the main Menu [GameInputManager](/DGD-Heroes/Assets/Scripts/Manager/GameInputManager.cs), [ChangeKeyScript](/DGD-Heroes/Assets/Scripts/UI/ChangeKeyScript.cs) |
 | Credits Screen | Static page, reachable by the main Menu |
-| Scoreboard - Sort | The scoreboard is reachable by the main Menu or when the game is over. [HightScoreTable](Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/UI/HightScoreTable.cs), [ScoreManager](Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Static/ScoreManager.cs) |
+| Scoreboard - Sorted | The scoreboard is reachable by the main Menu or when the game is over. [HightScoreTable](/DGD-Heroes/Assets/Scripts/UI/HightScoreTable.cs), [ScoreManager](/DGD-Heroes/Assets/Scripts/Static/ScoreManager.cs) |
 | Tutorial | 3 Static scenes |
-| Score | The score is stored and calculated in static class [PlayerStats](Hero-Saga/blob/master/DGD-Heroes/Assets/Scripts/Static/PlayerStats.cs) |
-| PowerUPs | There are tree PowerUPs: Attack, Defense, DoubleCoins. [PowerUP](/DGD-Heroes/Assets/Scripts/Objects/PowerUP.cs) |
+| Score | The score is stored and calculated in static class [PlayerStats](/DGD-Heroes/Assets/Scripts/Static/PlayerStats.cs) |
+| PowerUPs | There are three PowerUPs: Attack, Defense, DoubleCoins. [PowerUP](/DGD-Heroes/Assets/Scripts/Objects/PowerUP.cs) |
 | Time-Base | [TimerCountdown.cs](/DGD-Heroes/Assets/Scripts/UI/TimerCountdown.cs) |
 | Enemy | Goblin, Slime, RedBat [Enemies](/Hero-Saga/tree/master/DGD-Heroes/Assets/Scripts/Enemies) |
 | Multiple levels | There are two levels |
-| Basic AI | The enemy follow the player is near by [Enemy - Move](/DGD-Heroes/Assets/Scripts/Enemies/Enemy.cs), [IsNearOther2D](/DGD-Heroes/Assets/Scripts/Static/Extension.cs) |
+| Basic AI | The enemy follow the player if is near by [Enemy - Move](/DGD-Heroes/Assets/Scripts/Enemies/Enemy.cs), [IsNearOther2D](/DGD-Heroes/Assets/Scripts/Static/Extension.cs) |
 | PlayerPrefs | Store the custom controls and score [ScoreManager](/Tkd-Alex/DGD-Heroes/Assets/Scripts/Static/ScoreManager.cs), [ChangeKeyScript](/DGD-Heroes/Assets/Scripts/UI/ChangeKeyScript.cs) |
 | Singleton | [GameSingletonUI](/DGD-Heroes/Assets/Scripts/UI/GameSingletonUI.cs), [TimerCountdown.cs](/DGD-Heroes/Assets/Scripts/UI/TimerCountdown.cs), [SoundManager](/DGD-Heroes/Assets/Scripts/Manager/SoundManager.cs), [CameraBoundsManager](/DGD-Heroes/Assets/Scripts/Manager/CameraBoundsManager.cs), [SceneController](/DGD-Heroes/Assets/Scripts/Manager/SceneController.cs), [~~CoinsManager~~](/DGD-Heroes/Assets/Scripts/Manager/CoinsManager.cs) |
 | Coorutines | [unlockMove](/DGD-Heroes/Assets/Scripts/Hero/EdgeCheck.cs), [animationState - Player](/DGD-Heroes/Assets/Scripts/Hero/PlayerController.cs), [SpawnCoins, DeactivateDistanceCoins](/DGD-Heroes/Assets/Scripts/Manager/CoinsSpawnManager.cs), [WaitForKey, AssignKey, DotAnimation](/DGD-Heroes/Assets/Scripts/UI/ChangeKeyScript.cs), [TimerTake](/DGD-Heroes/Assets/Scripts/UI/TimerCountdown.cs) |
@@ -39,4 +39,3 @@
 | Raycast | Fireball collision, enemy detect [SpecialAttack](/DGD-Heroes/Assets/Scripts/Hero/SpecialAttack.cs)  |
 | User interface | Hero, enemy (Goblin, Slime, RedBat), tiles, tree, powerUPs (Attack, Defense, DoubleCoins), parallax background, coins, custom ui |
 | Particles system | Glow powerUPs, fireball explosion, player jump dust, tree around light |
-
