@@ -13,8 +13,8 @@ public class MenuButtonHandler : MonoBehaviour {
 		SceneController.instance.LoadScene("Level1");
 	}
 
-	public void Tutorial() {
-		SceneController.instance.LoadScene("Tutorial");
+	public void Tutorial(string name) {
+		SceneController.instance.LoadScene("Tutorial-" + name.Capitalize());
 	}
 
 	public void Credits() {

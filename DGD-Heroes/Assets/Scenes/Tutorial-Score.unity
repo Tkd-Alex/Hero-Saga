@@ -180,7 +180,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: powerup
+  m_Text: SCore
 --- !u!222 &410606101
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -262,7 +262,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 496392850}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 968842674}
+        m_MethodName: Menu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &496392850
@@ -439,6 +450,7 @@ GameObject:
   - component: {fileID: 968842672}
   - component: {fileID: 968842671}
   - component: {fileID: 968842670}
+  - component: {fileID: 968842674}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -526,6 +538,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &968842674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 968842669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3b6efcff954c464a84092708bb001dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1032963146
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,7 +634,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1114151489
 RectTransform:
   m_ObjectHideFlags: 0
@@ -628,7 +651,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -136, y: -51.000023}
+  m_AnchoredPosition: {x: -136, y: -51.00003}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1114151490
@@ -775,7 +798,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -52.6, y: -67}
+  m_AnchoredPosition: {x: 0, y: -67}
   m_SizeDelta: {x: 828, y: 379.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1358567340
@@ -810,17 +833,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-    praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias
-    excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui
-    officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem
-    rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis
-    est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere
-    possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem
-    quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et
-    voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic
-    tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur
-    aut perferendis doloribus asperiores repellat."'
+  m_Text: "The game ends when: \r\n - time runs out\r\n - reach the last tree of salvation
+    in Lv2\r\n - your hero is left lifeless.\r\n\r\nThe final score is characterized
+    by the number of enemies defeated, the number of coins collected, game time left
+    and hero's health.\r\nThe power is in your hands, it's up to you to decide whether
+    to complete the game in less time or collect as many coins as possible"
 --- !u!222 &1358567341
 CanvasRenderer:
   m_ObjectHideFlags: 0

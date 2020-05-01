@@ -263,8 +263,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1048135619}
-        m_MethodName: BackToMenu
+      - m_Target: {fileID: 968842675}
+        m_MethodName: Menu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -399,9 +399,9 @@ RectTransform:
   m_Father: {fileID: 968842673}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 66}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -234}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &898744445
@@ -483,6 +483,8 @@ GameObject:
   - component: {fileID: 968842672}
   - component: {fileID: 968842671}
   - component: {fileID: 968842670}
+  - component: {fileID: 968842674}
+  - component: {fileID: 968842675}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -570,6 +572,33 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &968842674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 968842669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190c0be3c6a82c84cb1b043a56caee9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entryScorePrefab: {fileID: 1175197530493174, guid: a7bf4e4b2f45f7940b01bf45302d0071,
+    type: 2}
+  startPosition: {fileID: 797521634}
+  tableHeight: 0.7
+  topN: 5
+--- !u!114 &968842675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 968842669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3b6efcff954c464a84092708bb001dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1032963146
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,51 +667,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1032963146}
---- !u!1 &1048135618
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1048135620}
-  - component: {fileID: 1048135619}
-  m_Layer: 0
-  m_Name: Scoreboard-Script
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1048135619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1048135618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 190c0be3c6a82c84cb1b043a56caee9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entryScorePrefab: {fileID: 1175197530493174, guid: a7bf4e4b2f45f7940b01bf45302d0071,
-    type: 2}
-  startPosition: {fileID: 797521634}
-  tableHeight: 0.7
-  topN: 5
---- !u!4 &1048135620
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1048135618}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.268235, y: 2.7339492, z: 0.35207862}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1319832412
 GameObject:
   m_ObjectHideFlags: 0

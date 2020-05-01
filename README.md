@@ -6,6 +6,8 @@
 - Objects: https://alexs-assets.itch.io/16x16-rpg-item-pack
 - Fireball: https://stealthix.itch.io/animated-fires
 - Enemies: https://lionheart963.itch.io/free-platformer-assets
+- Heart: https://fliflifly.itch.io/hearts-and-health-bar
+- Font: https://www.dafont.com/thaleahfat.font
 - Background & Tileset: https://mamanezakon.itch.io/forest-tileset
 - Soundtrack: https://www.youtube.com/watch?v=oMgQJEcVToY
 - Sound / FX: https://harvey656.itch.io/8-bit-game-sound-effects-collection
@@ -35,7 +37,7 @@
 | Extension Methods | [Spawn, Flip2D, IsNearOther2D, ChangeAlpha, Capitalize, RepeatForLoop, SetNameAndScore](/DGD-Heroes/Assets/Scripts/Static/Extension.cs) |
 | Animations | Hero: Idle, Jump, Hurt, Death. Coins, Enemy: Hurt, Idle |
 | Soundtrack | Main soundtrack played with singleton [SoundManager](/DGD-Heroes/Assets/Scripts/Manager/SoundManager.cs) |
-| Sounds / FX | Coins collect, player hurt, enemy hurt, player jump [SoundManager](/DGD-Heroes/Assets/Scripts/Manager/SoundManager.cs) |
+| Sounds / FX | Coins collect, player hurt, enemy hurt, player jump, powerup [SoundManager](/DGD-Heroes/Assets/Scripts/Manager/SoundManager.cs) |
 | Raycast | Fireball collision, enemy detect [SpecialAttack](/DGD-Heroes/Assets/Scripts/Hero/SpecialAttack.cs)  |
-| User interface | Hero, enemy (Goblin, Slime, RedBat), tiles, tree, powerUPs (Attack, Defense, DoubleCoins), parallax background, coins, custom ui |
+| User interface | Hero, enemy (Goblin, Slime, RedBat), enemy health bar, tiles, tree, powerUPs (Attack, Defense, DoubleCoins), parallax background, coins, custom ui |
 | Particles system | Glow powerUPs, fireball explosion, player jump dust, tree around light |

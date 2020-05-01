@@ -27,7 +27,7 @@ public class GameOver : MonoBehaviour {
 		if (!string.IsNullOrEmpty(name)) {
 			ScoreManager.CreateEntry(name, PlayerStats.CalculatePoints());
 			BackToMenu();
-		}else UnityEditor.EditorUtility.DisplayDialog("Error", "Please insert a name. If you don't want to save the score press the menu button.", "Ok");
+		} // else UnityEditor.EditorUtility.DisplayDialog("Error", "Please insert a name. If you don't want to save the score press the menu button.", "Ok");
 	}
 
 	public void BackToMenu() {
