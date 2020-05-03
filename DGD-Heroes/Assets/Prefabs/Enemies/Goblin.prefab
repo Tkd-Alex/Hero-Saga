@@ -53,7 +53,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1368465175921232}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.61, y: 1.22, z: 0}
+  m_LocalPosition: {x: 26.7, y: 0.57, z: 0}
   m_LocalScale: {x: 0.8723954, y: 0.8723954, z: 0.8723954}
   m_Children:
   - {fileID: 4699977928072878}
@@ -139,10 +139,10 @@ MonoBehaviour:
   player: {fileID: 0}
   playerDistance: 4
   speed: 0.6
-  maxHealth: 100
+  maxHealth: 150
   healthBar: {fileID: 1837557608661824, guid: 3968dc7f1bcbd3145b4254960e99fce0, type: 2}
   healthBarPoint: {fileID: 4699977928072878}
-  damage: 5
+  damage: 15
 --- !u!212 &212631063540279534
 SpriteRenderer:
   m_ObjectHideFlags: 1

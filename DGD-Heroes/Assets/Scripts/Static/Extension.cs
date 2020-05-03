@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -54,4 +55,16 @@ public static class Extension {
 		trans.Find("PlayerScore").GetComponent<Text>().text = score.ToString();
 	}
 
+	public static void SortListByScore(this List<ScoreManager.HightScoreEntry> hightscoreEntryList) {
+		// Just a little sorting method ... Best player on top.
+		for (int j = 0; j <= hightscoreEntryList.Count - 2; j++) {
+			for (int i = 0; i <= hightscoreEntryList.Count - 2; i++) {
+				if (hightscoreEntryList[i].score < hightscoreEntryList[i + 1].score) {
+					ScoreManager.HightScoreEntry temp = hightscoreEntryList[i + 1];
+					hightscoreEntryList[i + 1] = hightscoreEntryList[i];
+					hightscoreEntryList[i] = temp;
+				}
+			}
+		}
+	}
 }

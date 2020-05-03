@@ -15,17 +15,6 @@ public class HightScoreTable : MonoBehaviour {
 		ScoreManager.HightScores hightscores = ScoreManager.GetHightScores();
 		List<ScoreManager.HightScoreEntry> hightscoreEntryList = hightscores.hightscoreEntryList;
 
-		// Just a little sorting method ... Best player on top.
-		for (int j = 0; j <= hightscoreEntryList.Count - 2; j++) {
-			for (int i = 0; i <= hightscoreEntryList.Count - 2; i++) {
-				if (hightscoreEntryList[i].score < hightscoreEntryList[i + 1].score) {
-					ScoreManager.HightScoreEntry temp = hightscoreEntryList[i + 1];
-					hightscoreEntryList[i + 1] = hightscoreEntryList[i];
-					hightscoreEntryList[i] = temp;
-				}
-			}
-		}
-
 		/*
 		 * Iterate element one by one.
 		 * Break the loop if we have more than topN element.

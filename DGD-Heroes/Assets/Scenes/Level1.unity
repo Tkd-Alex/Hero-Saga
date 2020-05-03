@@ -3782,7 +3782,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -290.40002, y: -156.6}
+  m_AnchoredPosition: {x: -290, y: -156.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &49009839
@@ -16858,7 +16858,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 5.4, y: -48.799988}
+  m_AnchoredPosition: {x: 5.4, y: -49}
   m_SizeDelta: {x: 1366.2, y: 49}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &746313093
@@ -17156,7 +17156,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.18366793, y: 0.37719992}
+  m_Offset: {x: 0.18366793, y: 0.44410568}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -17167,7 +17167,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.02082409, y: 0.45856863}
+  m_Size: {x: 0.020824075, y: 0.3247571}
   m_EdgeRadius: 0
 --- !u!61 &853444219
 BoxCollider2D:
@@ -17181,7 +17181,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.25265247, y: 0.3588806}
+  m_Offset: {x: -0.25265247, y: 0.39387748}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -17192,7 +17192,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.021275818, y: 0.4900667}
+  m_Size: {x: 0.021275818, y: 0.42007297}
   m_EdgeRadius: 0
 --- !u!114 &853444220
 MonoBehaviour:
@@ -17905,7 +17905,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_RenderMode: 1
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -17984,7 +17984,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -681319993
+  randomSeed: -1631255393
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -21368,6 +21368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f4ad29c0bed0704e9541c58780b651f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneName: Level2
 --- !u!1 &1002115257
 GameObject:
   m_ObjectHideFlags: 0
@@ -22071,6 +22072,11 @@ Prefab:
     - target: {fileID: 1368465175921232, guid: 6487e3c3c5941194bb3d1a55a222a55a, type: 2}
       propertyPath: m_Name
       value: Goblin (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114102153287541720, guid: 6487e3c3c5941194bb3d1a55a222a55a,
+        type: 2}
+      propertyPath: damage
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6487e3c3c5941194bb3d1a55a222a55a, type: 2}
@@ -23116,7 +23122,7 @@ MonoBehaviour:
     m_Bits: 256
   attackrangeX: 0.18
   attackrangeY: 0.21
-  damage: 15
+  damage: 50
   direction: 1
   isGrounded: 0
   isInAnimation: 0
@@ -23174,6 +23180,11 @@ Prefab:
     - target: {fileID: 1368465175921232, guid: 6487e3c3c5941194bb3d1a55a222a55a, type: 2}
       propertyPath: m_Name
       value: Goblin (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114102153287541720, guid: 6487e3c3c5941194bb3d1a55a222a55a,
+        type: 2}
+      propertyPath: damage
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6487e3c3c5941194bb3d1a55a222a55a, type: 2}
@@ -23642,6 +23653,11 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 1708545170}
+    - target: {fileID: 114102153287541720, guid: 6487e3c3c5941194bb3d1a55a222a55a,
+        type: 2}
+      propertyPath: damage
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6487e3c3c5941194bb3d1a55a222a55a, type: 2}
   m_IsPrefabParent: 0

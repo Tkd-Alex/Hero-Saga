@@ -51,15 +51,20 @@ public class Enemy : MonoBehaviour {
 		} else if (relativePoint.x > 0.0) {
 			if (player.GetComponent<PlayerController>().direction == PlayerController.Direction.right) pushAway *= -1;
 		}
-		gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(pushAway, gameObject.GetComponent<Rigidbody2D>().velocity.y);
+
+		try {  // Prevent exception for FlyingEnemy
+			gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(pushAway, gameObject.GetComponent<Rigidbody2D>().velocity.y);
+		} catch (Exception) {}
 
 		health -= damage;
 		ResizeHealthBar();
 		SoundManager.instance.Play("HitEnemy");
 		gameObject.GetComponent<Animator>().Play("Damage");
-		if (health <= 0) {
-			this.gameObject.SetActive(false);
-			PlayerStats.IncreaseKills();
-		}
+		if (health <= 0) Invoke("Dead", 0.3f);  // Prevent destroy Object without animation
+	}
+
+	void Dead() {
+		this.gameObject.SetActive(false);
+		PlayerStats.IncreaseKills();
 	}
 }

@@ -21,12 +21,22 @@ public static class ScoreManager{
 	 * Append the item to current List<>
 	 * Convert the class HightScores to JSON and Save the PlayerPrefs
 	 */
-	public static void CreateEntry(string name, int score) {
+	public static void CreateEntry(string name, int score, int topN=10) {
 		HightScores hightscores = GetHightScores();
 		HightScoreEntry entry = new HightScoreEntry { score = score, name = name };
 		hightscores.hightscoreEntryList.Add(entry);
 
-		string json = JsonUtility.ToJson(hightscores);
+		hightscores.hightscoreEntryList.SortListByScore();
+		// hightscores.hightscoreEntryList.Take(0, topN);
+		// hightscores.hightscoreEntryList.GetRange(0, topN);
+
+		HightScores reducedScores = new HightScores { hightscoreEntryList = new List<HightScoreEntry>() };
+		for (int i = 0; i < hightscores.hightscoreEntryList.Count; i++) {
+			if (i >= topN) break;
+			reducedScores.hightscoreEntryList.Add(hightscores.hightscoreEntryList[i]);
+		}
+
+		string json = JsonUtility.ToJson(reducedScores);
 		PlayerPrefs.SetString("hightscoreTable", json);
 		PlayerPrefs.Save();
 	}
@@ -42,8 +52,9 @@ public static class ScoreManager{
 		if (PlayerPrefs.HasKey("hightscoreTable")) {
 			string jsonString = PlayerPrefs.GetString("hightscoreTable");
 			hightscores = JsonUtility.FromJson<HightScores>(jsonString);
-		} else hightscores = new ScoreManager.HightScores { hightscoreEntryList = new List<HightScoreEntry>() };
+		} else hightscores = new HightScores { hightscoreEntryList = new List<HightScoreEntry>() };
 
+		hightscores.hightscoreEntryList.SortListByScore();
 		return hightscores;
 	}
 }

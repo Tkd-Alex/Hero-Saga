@@ -26,17 +26,27 @@ public class EdgeCheck : MonoBehaviour {
 		Player = gameObject.transform.parent.gameObject;
 	}
 	void OnCollisionEnter2D(Collision2D collision) {
+		// Debug.Log("Collision enter");
+		GroundEdge(collision);
+	}
+
+	void OnCollisionStay2D(Collision2D collision) {
+		// Debug.Log("Collision stay");
+		GroundEdge(collision);
+	}
+
+	void GroundEdge(Collision2D collision) {
 		if (collision.collider.tag == "Ground")
 			if (
 				!Player.GetComponent<PlayerController>().isGrounded &&
 				!Player.GetComponent<PlayerController>().isInAnimation
 			) {
 				Player.GetComponent<PlayerController>().canMove = false;
-				StartCoroutine("unlockMove");
+				StartCoroutine("UnlockMove");
 			}
 	}
 
-	IEnumerator unlockMove() {
+	IEnumerator UnlockMove() {
 		yield return new WaitForSeconds(0.3f);  // Prevent control disable
 		if(!Player.GetComponent<PlayerController>().isGrounded)
 			Player.GetComponent<PlayerController>().canMove = true;

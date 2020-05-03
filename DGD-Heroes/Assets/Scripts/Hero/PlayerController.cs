@@ -215,13 +215,15 @@ public class PlayerController : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D collision) {
 		if (collision.collider.tag == "Enemy") {
-			if (!isAttacking) Hurt(collision.collider.GetComponent<Enemy>().damage, collision.collider.transform);
+			if (!isAttacking && !isInAnimation) Hurt(collision.collider.GetComponent<Enemy>().damage, collision.collider.transform);
 		}
 	}
 
+	/*
 	void OnCollisionStay2D(Collision2D collision) {
 		if (collision.collider.tag == "Enemy") {
 			if (!isAttacking) Hurt(collision.collider.GetComponent<Enemy>().damage, collision.collider.transform);
 		}
 	}
+	*/
 }

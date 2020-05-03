@@ -57,7 +57,12 @@
     }
 
     public static int CalculatePoints() {
-        return (int)(((coins * 5) + (kills * 2.5)) * (time + 1));
+        return ((int)(
+            (time + 1) * 
+            (coins * 2) *
+            (kills * 1.5) * 
+            (health * 0.5)
+        ));
     }
 
     public static void ResetAll() {

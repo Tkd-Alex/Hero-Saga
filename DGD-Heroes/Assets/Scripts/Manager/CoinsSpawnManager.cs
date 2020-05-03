@@ -46,18 +46,18 @@ public class CoinsSpawnManager : MonoBehaviour {
 			bool nearAnotherCoin = false;
 			bool noSpawn = false;
 
-			yield return new WaitForSeconds(Random.Range(2, 5));
+			yield return new WaitForSeconds(Random.Range(1f, 2.5f));
 
 			int loops = 0;
 			while(true){
 				// Create random x, y coordinate. Start from current player position.
 				// Clamp the coordinate in camera bounds range (with singleton)
-				// Random.InitState((int)System.DateTime.Now.Ticks);
-				futurePosition.x = Random.value >= 0.5 ? player.transform.position.x + Random.Range(0.3f, 3.0f) : player.transform.position.x - Random.Range(0.3f, 0.5f);
-				futurePosition.x = Mathf.Clamp(futurePosition.x, CameraBoundsManager.instance.getLefTimit() - 1, CameraBoundsManager.instance.getRightLimit() + 1);
+				// Random.InitState((int)System.DateTime.Now.Ticks);  // Random seed
+				futurePosition.x = Random.value >= 0.7 ? player.transform.position.x + Random.Range(0.3f, 3.0f) : player.transform.position.x - Random.Range(0.3f, 0.5f);
+				futurePosition.x = Mathf.Clamp(futurePosition.x, CameraBoundsManager.instance.getLefTimit() - 2.2f, CameraBoundsManager.instance.getRightLimit() + 1);
 
 				// Random.InitState((int)System.DateTime.Now.Ticks);
-				futurePosition.y = player.transform.position.y + Random.Range(0.5f, 2.8f);
+				futurePosition.y = player.transform.position.y + Random.Range(0.5f, 2.3f);
 				futurePosition.y = Mathf.Clamp(futurePosition.y, CameraBoundsManager.instance.getBottomLimit() - 2, CameraBoundsManager.instance.getTopLimit() + 1);
 
 				// Create Physics2D.OverlapCircleAll and search in the current new position we collide with other elements (like tile-map 'ground')
