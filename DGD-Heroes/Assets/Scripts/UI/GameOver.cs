@@ -26,7 +26,8 @@ public class GameOver : MonoBehaviour {
 		string name = inputField.GetComponent<Text>().text;
 		if (!string.IsNullOrEmpty(name)) {
 			ScoreManager.CreateEntry(name, PlayerStats.CalculatePoints());
-			BackToMenu();
+			// BackToMenu();
+			SceneController.instance.LoadScene("Scoreboard");
 		} // else UnityEditor.EditorUtility.DisplayDialog("Error", "Please insert a name. If you don't want to save the score press the menu button.", "Ok");
 	}
 
