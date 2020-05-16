@@ -1455,17 +1455,17 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 0f182320d1b6ef543880ab5223314707, type: 3}
-    volume: 1
+    volume: 0.3
     name: StartLevel
     loop: 0
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 5116cb8589395e54e95a4a0e1c1a63be, type: 3}
-    volume: 1
+    volume: 0.6
     name: Lose
     loop: 0
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 078954ac31367724c8424441397c75de, type: 3}
-    volume: 1
+    volume: 0.6
     name: Win
     loop: 0
     source: {fileID: 0}

@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour {
 		health -= PlayerStats.DefensePowerUp ? (int)(damage/2) : damage;  	// Reduce the healt
 		PlayerStats.Health = health;
 		GameSingletonUI.instance.healthText.text = "Health: " + (health <= 0 ? "0" : health.ToString().PadLeft(3, '0'));
-		if (health <= 15) GameSingletonUI.instance.healthText.color = new Color(153, 17, 17);
+		if (health <= 15) GameSingletonUI.instance.healthText.color = new Color32(153, 17, 17, 255);
 	}
 
 	/*
@@ -180,10 +180,10 @@ public class PlayerController : MonoBehaviour {
 		SoundManager.instance.Play("PlayerHurt");
 		yield return new WaitForSeconds(0.3f);
 		if (health <= 0) {
+			SoundManager.instance.Play("Lose");
 			gameObject.GetComponent<Animator>().Play("Owlet_Monster_Death");
 			yield return new WaitForSeconds(0.5f);
-			SoundManager.instance.Play("Lose");
-
+			
 			Destroy(gameObject);
 			Destroy(TimerCountdown.instance.gameObject);
 			Destroy(GameSingletonUI.instance.gameObject);

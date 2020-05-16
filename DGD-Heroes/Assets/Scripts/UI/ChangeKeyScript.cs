@@ -76,12 +76,12 @@ public class ChangeKeyScript : MonoBehaviour {
 			buttonString = GameInputManager.instance.left.ToString();
 		}
 		else if (keyName == "right") {
-			GameInputManager.instance.left = newKey;
-			buttonString = GameInputManager.instance.left.ToString();
+			GameInputManager.instance.right = newKey;
+			buttonString = GameInputManager.instance.right.ToString();
 		}
 		else if (keyName == "jump") {
-			GameInputManager.instance.left = newKey;
-			buttonString = GameInputManager.instance.left.ToString();
+			GameInputManager.instance.jump = newKey;
+			buttonString = GameInputManager.instance.jump.ToString();
 		}
 
 		StopCoroutine("DotAnimation");

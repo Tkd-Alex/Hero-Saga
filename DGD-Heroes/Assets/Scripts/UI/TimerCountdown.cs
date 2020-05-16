@@ -44,7 +44,7 @@ public class TimerCountdown : MonoBehaviour {
 		GameSingletonUI.instance.textSecondsLeft.text = "Left: " + t.Minutes.ToString ().PadLeft (2, '0') + ":" + t.Seconds.ToString ().PadLeft (2, '0');
 		if (secondsLeft <= 15) {
 			SoundManager.instance.Play("Alarm");
-			GameSingletonUI.instance.textSecondsLeft.color = new Color(153, 17, 17);
+			GameSingletonUI.instance.textSecondsLeft.color = new Color32(153, 17, 17, 255);
 		}
 	}
 
