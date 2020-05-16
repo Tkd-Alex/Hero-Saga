@@ -26,6 +26,8 @@ public class TimerCountdown : MonoBehaviour {
 		if (mutex == false && secondsLeft > 0)
 			StartCoroutine(TimerTake());
 		if (secondsLeft <= 0) {
+			SoundManager.instance.Play("Lose");
+
 			StopAllCoroutines();  // Just for make sure that the cooruting is stopped (should be)
 			
 			Destroy(gameObject);
@@ -40,6 +42,10 @@ public class TimerCountdown : MonoBehaviour {
 		TimeSpan t = TimeSpan.FromSeconds( secondsLeft );
 		// Update the UI text with M:S
 		GameSingletonUI.instance.textSecondsLeft.text = "Left: " + t.Minutes.ToString ().PadLeft (2, '0') + ":" + t.Seconds.ToString ().PadLeft (2, '0');
+		if (secondsLeft <= 15) {
+			SoundManager.instance.Play("Alarm");
+			GameSingletonUI.instance.textSecondsLeft.color = new Color(153, 17, 17);
+		}
 	}
 
 	/*

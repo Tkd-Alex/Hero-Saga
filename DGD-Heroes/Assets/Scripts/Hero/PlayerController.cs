@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour {
 	Rigidbody2D currentRigidBody;
 
 	void Start () {
+		SoundManager.instance.Play("StartLevel");
+
 		currentRigidBody = gameObject.GetComponent<Rigidbody2D>();
 		specialAttack = Instantiate(specialAttack, attackPoint.position, attackPoint.rotation);  //, transform);
 		specialAttack.SetActive(false);
@@ -163,6 +165,7 @@ public class PlayerController : MonoBehaviour {
 		health -= PlayerStats.DefensePowerUp ? (int)(damage/2) : damage;  	// Reduce the healt
 		PlayerStats.Health = health;
 		GameSingletonUI.instance.healthText.text = "Health: " + (health <= 0 ? "0" : health.ToString().PadLeft(3, '0'));
+		if (health <= 15) GameSingletonUI.instance.healthText.color = new Color(153, 17, 17);
 	}
 
 	/*
@@ -179,6 +182,7 @@ public class PlayerController : MonoBehaviour {
 		if (health <= 0) {
 			gameObject.GetComponent<Animator>().Play("Owlet_Monster_Death");
 			yield return new WaitForSeconds(0.5f);
+			SoundManager.instance.Play("Lose");
 
 			Destroy(gameObject);
 			Destroy(TimerCountdown.instance.gameObject);

@@ -1449,6 +1449,26 @@ MonoBehaviour:
     name: PlayerPowerUP
     loop: 0
     source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 4b721ef8930eb1e41a06be4bdb426577, type: 3}
+    volume: 1
+    name: Alarm
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 0f182320d1b6ef543880ab5223314707, type: 3}
+    volume: 1
+    name: StartLevel
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 5116cb8589395e54e95a4a0e1c1a63be, type: 3}
+    volume: 1
+    name: Lose
+    loop: 0
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 078954ac31367724c8424441397c75de, type: 3}
+    volume: 1
+    name: Win
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &1022205034
 Transform:
   m_ObjectHideFlags: 0

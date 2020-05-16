@@ -8,8 +8,9 @@ public class TreeChangeLevel : MonoBehaviour {
 	
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.CompareTag("Player")) {
-			SoundManager.instance.Play("PlayerPowerUP");
+			// SoundManager.instance.Play("PlayerPowerUP");
 			if (gameOver) {
+				SoundManager.instance.Play("Win");
 				SceneController.instance.LoadScene("GameOver");
 				Destroy(TimerCountdown.instance.gameObject);
 				Destroy(GameSingletonUI.instance.gameObject);
