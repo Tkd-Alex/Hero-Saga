@@ -162,7 +162,7 @@ public class PlayerController : MonoBehaviour {
 		StartCoroutine("HurtHandler");
 		health -= PlayerStats.DefensePowerUp ? (int)(damage/2) : damage;  	// Reduce the healt
 		PlayerStats.Health = health;
-		GameSingletonUI.instance.healthText.text = "Health: " + (health <= 0 ? "0" : health.ToString());
+		GameSingletonUI.instance.healthText.text = "Health: " + (health <= 0 ? "0" : health.ToString().PadLeft(3, '0'));
 	}
 
 	/*

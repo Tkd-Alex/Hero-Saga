@@ -10,7 +10,7 @@ public class Coins : MonoBehaviour {
 			// CoinsManager.instance.IncreaseCoins();
 			// if(other.gameObject.GetComponent<PlayerController>().doubleCoinsPowerUP) CoinsManager.instance.IncreaseCoins();
 			PlayerStats.IncreaseCoins();
-			GameSingletonUI.instance.coinsCollectText.text = "Coins: " + PlayerStats.Coins.ToString();
+			GameSingletonUI.instance.coinsCollectText.text = "Coins: " + PlayerStats.Coins.ToString().PadLeft(3, '0');
 			SoundManager.instance.Play("CoinsCollect");
 			this.gameObject.SetActive(false);
 		}
