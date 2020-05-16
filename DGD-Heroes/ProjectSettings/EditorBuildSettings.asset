@@ -18,20 +18,20 @@ EditorBuildSettings:
     path: Assets/Scenes/GameOver.unity
     guid: 43de3419067b7c94285bd83eadc02937
   - enabled: 1
-    path: Assets/Scenes/Scoreboard.unity
-    guid: 162782ff158ef2547b6ff504997af517
-  - enabled: 1
     path: Assets/Scenes/ChangeKeys.unity
     guid: b693fe8f832eabd4c9f94866e6aab87b
   - enabled: 1
-    path: Assets/Scenes/Tutorial-Score.unity
-    guid: 6edeb688a53468f40937998c80354c4c
+    path: Assets/Scenes/Credits.unity
+    guid: c983ef1ae7b81854da8cc1abc7f1832f
+  - enabled: 1
+    path: Assets/Scenes/Scoreboard.unity
+    guid: 162782ff158ef2547b6ff504997af517
   - enabled: 1
     path: Assets/Scenes/Tutorial-Movement.unity
     guid: 5ff99d7fb03c0874facc1856d612e95e
   - enabled: 1
     path: Assets/Scenes/Tutorial-Powerups.unity
-    guid: 743e147a9b04a1b45a3096c5a1866ae5
+    guid: 38a404d53fd607c46b8f1d8412f1b4fe
   - enabled: 1
-    path: Assets/Scenes/Credits.unity
-    guid: e435acb58d508e242abfd139f93f5a57
+    path: Assets/Scenes/Tutorial-Score.unity
+    guid: be9186e2d5be11341be6dc7280f81c1f
