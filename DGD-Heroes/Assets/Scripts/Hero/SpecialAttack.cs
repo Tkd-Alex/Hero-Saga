@@ -26,9 +26,10 @@ public class SpecialAttack : MonoBehaviour {
 	 * If the collision is with Enemy tug, Hurt the enemeny with damage value.
 	 * On collission mission move up the attack (rebember that the pivot on trasform is rotated)
 	 */
-	void Update () {
+	void Update() {
 		RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.up, 0);
-		if(hitInfo.collider != null) {
+		// if(hitInfo.collider != null) {  // In this way if collide with PowerUP or coins will be destroyed
+		if (hitInfo.collider != null && (hitInfo.collider.CompareTag("Enemy") || hitInfo.collider.CompareTag("Ground"))) { 
 			explosion.transform.Spawn(transform.position, transform.rotation);
 			Invoke("DisableExplosion", 0.5f);
 			DestroyThisAttack();

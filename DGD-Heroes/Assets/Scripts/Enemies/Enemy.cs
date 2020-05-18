@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour {
 	private void ResizeHealthBar() {
 		Vector3 localScale = healthBar.gameObject.transform.localScale;
 		localScale.x = (float)((1.5 * health) / maxHealth);
+		if (localScale.x < 0) localScale.x = 0;
 		healthBar.gameObject.transform.localScale = localScale;
 	}
 

@@ -60,9 +60,14 @@ public class PlayerController : MonoBehaviour {
 		if (PlayerStats.AttackPowerUP) {
 			Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - attackPoint.position;
 			float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-			if (
+			/*if (
 				(direction == Direction.right && rotZ >= -15 && rotZ <= 115) ||
 				(direction == Direction.left && ( (rotZ >= 80 && rotZ <= 180) || rotZ <= -150))
+			)
+			*/
+			if(
+				( direction == Direction.right && ((rotZ >= 0 && rotZ <= 92) || (rotZ <= 0 && rotZ >= -108)) ) ||
+				( direction == Direction.left && ((rotZ >= 92 && rotZ <= 180) || (rotZ >= -180 && rotZ <= -90)) )
 			) {
 				attackPoint.rotation = Quaternion.Euler(0f, 0f, rotZ - 90);
 				canShoot = true;
