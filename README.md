@@ -25,7 +25,7 @@
 | Score | The score is stored and calculated in static class [PlayerStats](/DGD-Heroes/Assets/Scripts/Static/PlayerStats.cs) |
 | PowerUPs | There are three PowerUPs: Attack, Defense, DoubleCoins. [PowerUP](/DGD-Heroes/Assets/Scripts/Objects/PowerUP.cs) |
 | Time-Base | [TimerCountdown.cs](/DGD-Heroes/Assets/Scripts/UI/TimerCountdown.cs) |
-| Enemy | Goblin, Slime, RedBat [Enemies](/Hero-Saga/tree/master/DGD-Heroes/Assets/Scripts/Enemies) |
+| Enemy | Goblin, Slime, RedBat [Enemies](/DGD-Heroes/Assets/Scripts/Enemies) |
 | Multiple levels | There are two levels |
 | Basic AI | The enemy follow the player if is near by [Enemy - Move](/DGD-Heroes/Assets/Scripts/Enemies/Enemy.cs), [IsNearOther2D](/DGD-Heroes/Assets/Scripts/Static/Extension.cs) |
 | PlayerPrefs | Store the custom controls and score [ScoreManager](/Tkd-Alex/DGD-Heroes/Assets/Scripts/Static/ScoreManager.cs), [ChangeKeyScript](/DGD-Heroes/Assets/Scripts/UI/ChangeKeyScript.cs) |
