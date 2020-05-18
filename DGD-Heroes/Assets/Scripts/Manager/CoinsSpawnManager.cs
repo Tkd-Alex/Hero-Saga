@@ -46,14 +46,15 @@ public class CoinsSpawnManager : MonoBehaviour {
 			bool nearAnotherCoin = false;
 			bool noSpawn = false;
 
-			yield return new WaitForSeconds(Random.Range(1f, 2.5f));
+			yield return new WaitForSeconds(Random.Range(0.5f, 2.5f));
 
 			int loops = 0;
 			while(true){
 				// Create random x, y coordinate. Start from current player position.
 				// Clamp the coordinate in camera bounds range (with singleton)
 				// Random.InitState((int)System.DateTime.Now.Ticks);  // Random seed
-				futurePosition.x = Random.value >= 0.7 ? player.transform.position.x + Random.Range(0.3f, 3.0f) : player.transform.position.x - Random.Range(0.3f, 0.5f);
+				// futurePosition.x = Random.value >= 0.7 ? player.transform.position.x + Random.Range(0.3f, 3.0f) : player.transform.position.x - Random.Range(0.3f, 0.5f);
+				futurePosition.x = player.transform.position.x + Random.Range(0.3f, 3.0f);
 				futurePosition.x = Mathf.Clamp(futurePosition.x, CameraBoundsManager.instance.getLefTimit() - 2.2f, CameraBoundsManager.instance.getRightLimit() + 1);
 
 				// Random.InitState((int)System.DateTime.Now.Ticks);

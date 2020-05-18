@@ -23777,7 +23777,7 @@ MonoBehaviour:
   player: {fileID: 1708545170}
   parent: {fileID: 379507332}
   coin: {fileID: 1683451278066072, guid: 9ad35ce3e7b6c5b47ad085d59131a47d, type: 2}
-  maxCoinsOnScreen: 15
+  maxCoinsOnScreen: 25
 --- !u!1 &2052898251
 GameObject:
   m_ObjectHideFlags: 0
