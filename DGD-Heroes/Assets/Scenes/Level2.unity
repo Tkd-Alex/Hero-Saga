@@ -5329,7 +5329,7 @@ GameObject:
   - component: {fileID: 707017161}
   - component: {fileID: 707017160}
   - component: {fileID: 707017159}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -22899,6 +22899,9 @@ MonoBehaviour:
   canMove: 1
   specialAttack: {fileID: 1619546966336618, guid: e8e71d0dc27ccf94ea230376ef05c5a4,
     type: 2}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &1727804454
 GameObject:
   m_ObjectHideFlags: 0

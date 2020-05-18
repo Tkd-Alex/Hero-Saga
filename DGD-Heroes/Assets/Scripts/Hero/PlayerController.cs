@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] LayerMask enemies;
 	[SerializeField] float attackrangeX;
 	[SerializeField] float attackrangeY;
-	[SerializeField] float damage = 15;
+	[SerializeField] float damage = 50;
 
 	public enum Direction {left, right}
 	public Direction direction = Direction.right;	// Just for readable code
@@ -25,7 +25,8 @@ public class PlayerController : MonoBehaviour {
 	public bool canMove = true;
 	private bool isAttacking = false;
 
-	[SerializeField] GameObject specialAttack;  	// Prefab
+	[SerializeField] GameObject specialAttack;      // Prefab
+	[SerializeField] LayerMask groundLayer;
 
 	// Move GetKey - GetKeyDown from FixedUpdate() to Update()
 	// https://www.google.com/search?q=unity+getkeydown+fixedupdate
@@ -50,6 +51,7 @@ public class PlayerController : MonoBehaviour {
 	 * If the user have PowerUp attack goin to calculate the direction of SpecialAttack base on mouse position.
 	 * First of all calculate the delta by mainCamera and mousePosition
 	 * Check if position of the mouse is 'front' of the player and the rotation is not pointing the groud.
+	 * Use RayCast with groundLayer and check if the Fireball can collide with the Ground. (It's like collider control in SpecialAttack but limited to the ground).
 	 * If all it's ok set canShoot to true.
 	 * rotZ - 90 because we have the special attack pivot rotate (for follow up Translate)
 	 * If we can't use the special attack just do a 'normal' punch :)
@@ -60,17 +62,14 @@ public class PlayerController : MonoBehaviour {
 		if (PlayerStats.AttackPowerUP) {
 			Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - attackPoint.position;
 			float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-			/*if (
-				(direction == Direction.right && rotZ >= -15 && rotZ <= 115) ||
-				(direction == Direction.left && ( (rotZ >= 80 && rotZ <= 180) || rotZ <= -150))
-			)
-			*/
 			if(
 				( direction == Direction.right && ((rotZ >= 0 && rotZ <= 92) || (rotZ <= 0 && rotZ >= -108)) ) ||
 				( direction == Direction.left && ((rotZ >= 92 && rotZ <= 180) || (rotZ >= -180 && rotZ <= -90)) )
 			) {
 				attackPoint.rotation = Quaternion.Euler(0f, 0f, rotZ - 90);
-				canShoot = true;
+				// Check if the fireball can collide with the Ground
+				RaycastHit2D groundHitted = Physics2D.Raycast(attackPoint.position, attackPoint.up, 0.6f, groundLayer);
+				if(groundHitted.collider == null) canShoot = true;
 			}
 		}
 

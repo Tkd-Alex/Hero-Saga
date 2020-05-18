@@ -57,11 +57,11 @@
     }
 
     public static int CalculatePoints() {
-        return 1000 * ((int)(
-            (coins * 3.5) +
-            (kills * 3.0) +
-            (health < 0 ? 1 : health * 2.0) +
-            (time < 0 ? 1 : time * 1.5)
+        return 123 * ((int)(
+            (coins * 7.0) +
+            (kills * 6.0) +
+            (health < 0 ? 1 : health * 4.0) +
+            (time < 0 ? 1 : time * 3.0)
         ));
     }
 
