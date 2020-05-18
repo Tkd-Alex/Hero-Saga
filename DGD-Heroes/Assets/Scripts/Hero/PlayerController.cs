@@ -26,11 +26,13 @@ public class PlayerController : MonoBehaviour {
 	private bool isAttacking = false;
 
 	[SerializeField] GameObject specialAttack;  	// Prefab
-	// public bool attackPowerUP = false;
-	// public bool defensePowerUP = false;
-	// public bool doubleCoinsPowerUP = false;
 
-	private bool canDoubleJump;
+	// Move GetKey - GetKeyDown from FixedUpdate() to Update()
+	// https://www.google.com/search?q=unity+getkeydown+fixedupdate
+	private bool leftKeyPress = false;
+	private bool rightKeyPress = false;
+	private bool canDoubleJump = false;
+	
 	Rigidbody2D currentRigidBody;
 
 	void Start () {
@@ -42,9 +44,6 @@ public class PlayerController : MonoBehaviour {
 
 		// Recovery data from PlayerStat
 		if (PlayerStats.Health != 0) health = PlayerStats.Health;
-		// attackPowerUP = PlayerStats.AttackPowerUP;
-		// defensePowerUP = PlayerStats.DefensePowerUp;
-		// doubleCoinsPowerUP = PlayerStats.DoubleCoinsPowerUP;
 	}
 
 	/*
@@ -77,6 +76,31 @@ public class PlayerController : MonoBehaviour {
 				specialAttack.transform.GetChild(0).GetComponent<SpecialAttack>().Spawn(attackPoint.position, attackPoint.rotation);
 			StartCoroutine("AttackHandler");
 		}
+
+		if (Input.GetKey(GameInputManager.instance.right)) {
+			leftKeyPress = false;
+			rightKeyPress = true;
+		}
+		else if (Input.GetKey(GameInputManager.instance.left)){
+			leftKeyPress = true;
+			rightKeyPress = false;
+		}
+
+		if (isGrounded) canDoubleJump = true;
+
+		if (Input.GetKey(GameInputManager.instance.jump) && canMove && !isInAnimation) {
+			if (isGrounded) currentRigidBody.velocity = new Vector2(currentRigidBody.velocity.x, jumpHeight);
+			else {
+				if (Input.GetKeyDown(GameInputManager.instance.jump)) {
+					if (canDoubleJump) {
+						canDoubleJump = false;
+						SoundManager.instance.Play("PlayerJump");
+						currentRigidBody.velocity = new Vector2(currentRigidBody.velocity.x, jumpHeight);
+					}
+				}
+			}
+		}
+
 	}
 
 	// Just for see the range of 'normal' punch attack.
@@ -100,19 +124,22 @@ public class PlayerController : MonoBehaviour {
 	 * Change velocity for move the player
 	 *
 	 * For jump and double jump the logic is pretty the same of left, right movement. Just use a flag variable for double jump
+	 * Edit: 18/05. Jump and double jump was moved onUpdate()
 	 *
 	 */
 	void FixedUpdate(){
 
-		if (Input.GetKey(GameInputManager.instance.right) && canMove && !isInAnimation) {
+		if (rightKeyPress && canMove && !isInAnimation) {
+			rightKeyPress = false;
 			if (direction != Direction.right) {
 				gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * - 1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 				direction = Direction.right;
 			}
 			if (!isAttacking) gameObject.GetComponent<Animator> ().Play ("Owlet_Monster_Run");
 			currentRigidBody.velocity = new Vector2 (moveSpeed, currentRigidBody.velocity.y);
-		} else if (Input.GetKey(GameInputManager.instance.left) && canMove && !isInAnimation) {
-			if(direction != Direction.left) {
+		} else if (leftKeyPress && canMove && !isInAnimation) {
+			leftKeyPress = false;
+			if (direction != Direction.left) {
 				gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * - 1, gameObject.transform.localScale.y, gameObject.transform.localScale.z);
 				direction = Direction.left;
 			}
@@ -120,22 +147,6 @@ public class PlayerController : MonoBehaviour {
 			currentRigidBody.velocity = new Vector2 (-moveSpeed, currentRigidBody.velocity.y);
 		}else {
 			if (!isAttacking && canMove && !isInAnimation) gameObject.GetComponent<Animator> ().Play ("Owlet_Monster_Idle");
-		}
-
-		if (isGrounded == true) canDoubleJump = true;
-
-		if(Input.GetKey(GameInputManager.instance.jump) && canMove && !isInAnimation){
-			if (isGrounded) currentRigidBody.velocity = new Vector2 (currentRigidBody.velocity.x, jumpHeight);
-			else {
-				if (Input.GetKeyDown(GameInputManager.instance.jump)) {
-					if (canDoubleJump == true) {
-						canDoubleJump = false;
-						SoundManager.instance.Play("PlayerJump");
-						currentRigidBody.velocity = new Vector2 (currentRigidBody.velocity.x, jumpHeight);
-					}
-				}
-			}
-			// gameObject.GetComponent<Animator> ().Play ("Owlet_Monster_Jump");
 		}
 
 		// Prevent out of screen movements ...
