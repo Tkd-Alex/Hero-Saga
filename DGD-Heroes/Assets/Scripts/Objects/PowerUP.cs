@@ -10,6 +10,7 @@ public class PowerUP : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.CompareTag("Player")) {
+			PlayerStats.IncreaseExtraPoint(50);
 			other.gameObject.GetComponent<PlayerController>().PowerUP(type);
 			transform.parent.gameObject.SetActive(false);
 		}

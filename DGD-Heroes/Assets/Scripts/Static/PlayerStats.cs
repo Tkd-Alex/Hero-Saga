@@ -8,12 +8,20 @@
      * Used also for recovery data between levels
      */
 
-    private static int kills = 0, coins = 0;
+    private static int kills = 0, coins = 0, extraPoints = 0;
     private static float time = 0f, health = 0;
 
     private static bool attackPowerUP = false;
     private static bool defensePowerUP = false;
     private static bool doubleCoinsPowerUP = false;
+
+    public static int ExtraPoints {
+        get { return extraPoints; }
+        set { extraPoints = value; }
+    }
+    public static void IncreaseExtraPoint(int value = 1) {
+        extraPoints += value;
+    }
 
     public static int Kills {
         get { return kills; }
@@ -57,16 +65,16 @@
     }
 
     public static int CalculatePoints() {
-        return 123 * ((int)(
+        return extraPoints + (123 * ((int)(
             (coins * 7.0) +
             (kills * 6.0) +
             (health < 0 ? 1 : health * 4.0) +
             (time < 0 ? 1 : time * 3.0)
-        ));
+        )));
     }
 
     public static void ResetAll() {
-        kills = coins = 0;
+        kills = coins = extraPoints = 0;
         time = health = 0f;
         attackPowerUP = defensePowerUP = doubleCoinsPowerUP = false;
     }

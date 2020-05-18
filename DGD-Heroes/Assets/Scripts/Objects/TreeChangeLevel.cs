@@ -8,13 +8,16 @@ public class TreeChangeLevel : MonoBehaviour {
 	
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.CompareTag("Player")) {
-			// SoundManager.instance.Play("PlayerPowerUP");
 			if (gameOver) {
+				PlayerStats.IncreaseExtraPoint(250);
 				SoundManager.instance.Play("Win");
 				SceneController.instance.LoadScene("GameOver");
 				Destroy(TimerCountdown.instance.gameObject);
 				Destroy(GameSingletonUI.instance.gameObject);
-			} else SceneController.instance.LoadScene("Level2");
+			} else {
+				PlayerStats.IncreaseExtraPoint(150);
+				SceneController.instance.LoadScene("Level2");
+			}
 		}
 	}
 }
