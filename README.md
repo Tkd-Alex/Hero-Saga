@@ -28,7 +28,7 @@
 | Enemy | Goblin, Slime, RedBat [Enemies](/DGD-Heroes/Assets/Scripts/Enemies) |
 | Multiple levels | There are two levels |
 | Basic AI | The enemy follow the player if is near by [Enemy - Move](/DGD-Heroes/Assets/Scripts/Enemies/Enemy.cs), [IsNearOther2D](/DGD-Heroes/Assets/Scripts/Static/Extension.cs) |
-| PlayerPrefs | Store the custom controls and score [ScoreManager](/Tkd-Alex/DGD-Heroes/Assets/Scripts/Static/ScoreManager.cs), [ChangeKeyScript](/DGD-Heroes/Assets/Scripts/UI/ChangeKeyScript.cs) |
+| PlayerPrefs | Store the custom controls and score [ScoreManager](/DGD-Heroes/Assets/Scripts/Static/ScoreManager.cs), [ChangeKeyScript](/DGD-Heroes/Assets/Scripts/UI/ChangeKeyScript.cs) |
 | Singleton | [GameSingletonUI](/DGD-Heroes/Assets/Scripts/UI/GameSingletonUI.cs), [TimerCountdown.cs](/DGD-Heroes/Assets/Scripts/UI/TimerCountdown.cs), [SoundManager](/DGD-Heroes/Assets/Scripts/Manager/SoundManager.cs), [CameraBoundsManager](/DGD-Heroes/Assets/Scripts/Manager/CameraBoundsManager.cs), [SceneController](/DGD-Heroes/Assets/Scripts/Manager/SceneController.cs), [~~CoinsManager~~](/DGD-Heroes/Assets/Scripts/Manager/CoinsManager.cs) |
 | Coorutines | [UnlockMove](/DGD-Heroes/Assets/Scripts/Hero/EdgeCheck.cs), [animationState - Player](/DGD-Heroes/Assets/Scripts/Hero/PlayerController.cs), [SpawnCoins, DeactivateDistanceCoins](/DGD-Heroes/Assets/Scripts/Manager/CoinsSpawnManager.cs), [WaitForKey, AssignKey, DotAnimation](/DGD-Heroes/Assets/Scripts/UI/ChangeKeyScript.cs), [TimerTake](/DGD-Heroes/Assets/Scripts/UI/TimerCountdown.cs) |
 | Enums | [Direction](/DGD-Heroes/Assets/Scripts/Hero/PlayerController.cs), [PowerUPs](/DGD-Heroes/Assets/Scripts/Objects/PowerUP.cs) |
