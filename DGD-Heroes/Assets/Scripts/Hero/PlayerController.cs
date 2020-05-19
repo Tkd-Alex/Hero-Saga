@@ -198,10 +198,13 @@ public class PlayerController : MonoBehaviour {
 			SoundManager.instance.Play("Lose");
 			gameObject.GetComponent<Animator>().Play("Owlet_Monster_Death");
 			yield return new WaitForSeconds(0.5f);
-			
+
+			/* fps dropped here
 			Destroy(gameObject);
+			
 			Destroy(TimerCountdown.instance.gameObject);
 			Destroy(GameSingletonUI.instance.gameObject);
+			*/
 
 			SceneController.instance.LoadScene("GameOver");
 		}

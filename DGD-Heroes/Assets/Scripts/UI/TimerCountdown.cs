@@ -6,7 +6,7 @@ using System;
 
 public class TimerCountdown : MonoBehaviour {
 
-	[SerializeField] int secondsLeft;
+	[SerializeField] int secondsLeft = 180;
 	bool mutex = false;
 
 	public static TimerCountdown instance;
@@ -27,14 +27,13 @@ public class TimerCountdown : MonoBehaviour {
 			StartCoroutine(TimerTake());
 		if (secondsLeft <= 0) {
 			SoundManager.instance.Play("Lose");
-
-			StopAllCoroutines();  // Just for make sure that the cooruting is stopped (should be)
-			
-			Destroy(gameObject);
-			Destroy(GameSingletonUI.instance.gameObject);
-			
 			SceneController.instance.LoadScene("GameOver");
 		}
+	}
+
+	public void Deactivate() {
+		StopAllCoroutines();  // Just for make sure that the cooruting is stopped (should be)
+		Destroy(gameObject);
 	}
 
 	void UpdateUITextFromSeconds(){

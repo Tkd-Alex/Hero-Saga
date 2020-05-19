@@ -11,6 +11,9 @@ public class GameOver : MonoBehaviour {
 	void Start () {
 		finalScoreText.text = PlayerStats.CalculatePoints().ToString();
 
+		TimerCountdown.instance.Deactivate();
+		Destroy(GameSingletonUI.instance.gameObject);
+
 		// Debug.Log("Kills: " + PlayerStats.Kills.ToString());
 		// Debug.Log("Coins: " + PlayerStats.Coins.ToString());
 		// Debug.Log("Time: " + PlayerStats.Time.ToString());

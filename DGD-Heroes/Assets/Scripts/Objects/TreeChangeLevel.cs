@@ -12,8 +12,9 @@ public class TreeChangeLevel : MonoBehaviour {
 				PlayerStats.IncreaseExtraPoint(250);
 				SoundManager.instance.Play("Win");
 				SceneController.instance.LoadScene("GameOver");
-				Destroy(TimerCountdown.instance.gameObject);
-				Destroy(GameSingletonUI.instance.gameObject);
+				// Another fps drop here . The following Destroy was moved on Start of GameOver
+				// Destroy(TimerCountdown.instance.gameObject);
+				// Destroy(GameSingletonUI.instance.gameObject);
 			} else {
 				PlayerStats.IncreaseExtraPoint(150);
 				SceneController.instance.LoadScene("Level2");

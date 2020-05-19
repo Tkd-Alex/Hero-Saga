@@ -13,6 +13,10 @@ public class MenuButtonHandler : MonoBehaviour {
 		SceneController.instance.LoadScene("Level1");
 	}
 
+	public void Quit() {
+		Application.Quit();
+	}
+
 	public void Tutorial(string name) {
 		SceneController.instance.LoadScene("Tutorial-" + name.Capitalize());
 	}
