@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour {
 			) {
 				attackPoint.rotation = Quaternion.Euler(0f, 0f, rotZ - 90);
 				// Check if the fireball can collide with the Ground
-				RaycastHit2D groundHitted = Physics2D.Raycast(attackPoint.position, attackPoint.up, 0.6f, groundLayer);
+				RaycastHit2D groundHitted = Physics2D.Raycast(attackPoint.position, attackPoint.up, 0.7f, groundLayer);
 				if(groundHitted.collider == null) canShoot = true;
 			}
 		}
