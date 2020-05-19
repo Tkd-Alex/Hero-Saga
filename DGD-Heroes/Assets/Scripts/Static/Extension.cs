@@ -57,12 +57,12 @@ public static class Extension {
 
 	public static void SortListByScore(this List<ScoreManager.HightScoreEntry> hightscoreEntryList) {
 		// Just a little sorting method ... Best player on top.
-		for (int j = 0; j <= hightscoreEntryList.Count - 2; j++) {
-			for (int i = 0; i <= hightscoreEntryList.Count - 2; i++) {
-				if (hightscoreEntryList[i].score < hightscoreEntryList[i + 1].score) {
-					ScoreManager.HightScoreEntry temp = hightscoreEntryList[i + 1];
-					hightscoreEntryList[i + 1] = hightscoreEntryList[i];
-					hightscoreEntryList[i] = temp;
+		for (int i = 0; i < hightscoreEntryList.Count - 1; i++) {
+			for (int j = i; j < hightscoreEntryList.Count; j++) {
+				if (hightscoreEntryList[i].score < hightscoreEntryList[j].score) {
+					ScoreManager.HightScoreEntry temp = hightscoreEntryList[i];
+					hightscoreEntryList[i] = hightscoreEntryList[j];
+					hightscoreEntryList[j] = temp;
 				}
 			}
 		}

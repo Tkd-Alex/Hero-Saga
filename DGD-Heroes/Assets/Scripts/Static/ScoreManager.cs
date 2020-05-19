@@ -27,8 +27,6 @@ public static class ScoreManager{
 		hightscores.hightscoreEntryList.Add(entry);
 
 		hightscores.hightscoreEntryList.SortListByScore();
-		// hightscores.hightscoreEntryList.Take(0, topN);
-		// hightscores.hightscoreEntryList.GetRange(0, topN);
 
 		HightScores reducedScores = new HightScores { hightscoreEntryList = new List<HightScoreEntry>() };
 		for (int i = 0; i < hightscores.hightscoreEntryList.Count; i++) {
