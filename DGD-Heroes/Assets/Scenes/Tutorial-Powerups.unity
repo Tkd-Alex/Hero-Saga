@@ -540,8 +540,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "Collect the magic wand and unlock the power of fire! The punch attack will
     then become a fireball to be thrown at the enemies using the mouse.\r\n\r\nCollect
-    the shield to reduce enemy damage.\r\n\r\nCollect a nice bundle of coins to have
-    the ability to duplicate the next coins"
+    the shield to reduce the enemy damage.\r\n\r\nCollect a nice bundle of coins to
+    have the ability to duplicate the next coins"
 --- !u!222 &767974554
 CanvasRenderer:
   m_ObjectHideFlags: 0

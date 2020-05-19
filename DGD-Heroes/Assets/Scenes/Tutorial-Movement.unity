@@ -982,11 +982,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "In this game you can only move in two directions.\r\nYou can decide whether
-    to go forward or backward.\r\nIt's possible also to jump and to a big jump with
-    double jump!\r\n\r\nWhen you meet an enemy you can decide to run/jump away or
-    face.\r\nIf you want to face them instead, Your hero is strong use his punch with
-    the mouse."
+  m_Text: "Hi! Welcome to Hero-Saga.\r\nThis is a simple 2D platform so you can only
+    move in two directions.\r\nIf you want you can jump or do a double jump!\r\n\r\nWhen
+    you meet an enemy you can decide to run/jump away or beat them.\r\nYour hero is
+    strong, use his punch with left-mouse click."
 --- !u!222 &1358567341
 CanvasRenderer:
   m_ObjectHideFlags: 0

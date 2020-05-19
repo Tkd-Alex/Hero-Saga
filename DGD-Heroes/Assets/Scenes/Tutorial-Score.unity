@@ -982,11 +982,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "The game ends when: \r\n - time runs out\r\n - reach the last tree of salvation
-    in Lv2\r\n - your hero is left lifeless.\r\n\r\nThe final score is characterized
-    by the number of enemies defeated, the number of coins collected, game time left
-    and hero's health.\r\nThe power is in your hands, it's up to you to decide whether
-    to complete the game in less time or collect as many coins as possible"
+  m_Text: "The game ends when: \r\n - time runs out\r\n - reach the tree in Lv2\r\n
+    - your hero is left lifeless.\r\n\r\nThe final score is characterized by the number
+    of enemies defeated, the number of coins collected, game time left and hero's
+    health.\r\nThe power is in your hands, it's up to you to decide whether to complete
+    the game in less time or collect as many coins as possible"
 --- !u!222 &1358567341
 CanvasRenderer:
   m_ObjectHideFlags: 0
